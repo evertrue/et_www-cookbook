@@ -3,13 +3,13 @@
 # Recipe:: default
 #
 # Copyright (C) 2013 EverTrue, Inc.
-# 
+#
 # All rights reserved - Do Not Redistribute
 #
 
 case node['platform_family']
   when "debian"
-   include_recipe "apt"
+    include_recipe "apt"
 end
 
 include_recipe "apache2"
