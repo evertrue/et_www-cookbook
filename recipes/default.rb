@@ -27,6 +27,16 @@ directory node['apache']['docroot'] do
   action :create
 end
 
+# Install basic auth for /apps
+# TODO Remove this when /apps moves to its own project/vhost
+cookbook_file "#{node['apache']['docroot']}/passwd_apps" do
+  source "passwd_apps"
+  mode 00644
+  owner "deploy"
+  group "deploy"
+  action :create_if_missing
+end
+
 web_app "evertrue_com" do
   server_name node['apache']['server_name']
   server_aliases node['apache']['server_aliases']

@@ -4,25 +4,27 @@
   DocumentRoot <%= @params[:docroot] %>
   RewriteEngine On
 
-  <Directory <%= @params[:docroot] %>>
-    Options <%= [@params[:directory_options] || "FollowSymLinks" ].flatten.join " " %>
-    AllowOverride <%= [@params[:allow_override] || "None" ].flatten.join " " %>
-    Order allow,deny
-    Allow from all
-  </Directory>
-
+  # Lock things up by default
   <Directory />
     Options FollowSymLinks
     AllowOverride None
   </Directory>
 
-  <Location /server-status>
-    SetHandler server-status
+  # Allow access to siteroot & below
+  # Also allows overrides via .htaccess
+  <Directory <%= @params[:docroot] %>>
+    Options <%= [@params[:directory_options] || "+FollowSymLinks" ].flatten.join " " %>
+    AllowOverride <%= [@params[:allow_override] || "None" ].flatten.join " " %>
+    Order allow,deny
+    Allow from all
+  </Directory>
 
-    Order Deny,Allow
-    Deny from all
-    Allow from 127.0.0.1
-  </Location>
+  <Directory "<%= @params[:docroot] %>/apps">
+    AuthType Basic
+    AuthName "EverTrue Apps Install"
+    AuthUserFile /home/www/passwd_apps
+    Require user apps
+  </Directory>
 
   LogLevel info
   ErrorLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-error.log
@@ -36,12 +38,62 @@
   RewriteLog <%= node['apache']['log_dir'] %>/<%= @application_name %>-rewrite.log
   RewriteLogLevel 0
 
+  # admin.evertrue rules are commented out for now due to issues w/ caching
+  # across multiple instances. Will re-enable once that is sorted
+
+  # # Force all admin traffic to correct hostname/server
+  # RewriteCond %{HTTP_HOST} !^admin.evertrue.com$
+  # RewriteCond %{HTTP_HOST} !amazonaws.com$
+  # RewriteRule ^/(site/)?wp-admin/(.*)$ http://admin.evertrue.com/site/wp-admin/$2 [QSA,L,R=301]
+
+  # # Force all admin traffic to correct hostname/server
+  # RewriteCond %{HTTP_HOST} !^admin.evertrue.com$
+  # RewriteCond %{HTTP_HOST} !amazonaws.com$
+  # RewriteRule ^/(site/)?wp-login.php$ http://admin.evertrue.com/site/wp-login.php [QSA,L,R=301]
+
   # Canonical host, <%= @params[:server_name] %>
+  # Excludes AWS ELB ping requests
+  RewriteCond %{REQUEST_URI} !^\/ping
   RewriteCond %{HTTP_HOST}   !^<%= @params[:server_name] %> [NC]
   RewriteCond %{HTTP_HOST}   !^$
   RewriteRule ^/(.*)$        http://<%= @params[:server_name] %>/$1 [L,R=301]
 
+  # # Force all non-admin traffic to correct hostname
+  # RewriteCond %{HTTP_HOST}   ^admin.evertrue.com$
+  # RewriteCond %{REQUEST_URI} !^/site/(wp-content|wp-includes|wp-admin|wp-login.php)
+  # RewriteRule ^(.*)$         http://www.evertrue.com/$1 [QSA,L,R=301]
+
   RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
   RewriteCond %{SCRIPT_FILENAME} !maintenance.html
   RewriteRule ^.*$ /system/maintenance.html [L]
+
+  # Legacy Pages
+  RewriteRule ^/about-evertrue-connect(.*) /          [R=301,L]
+  RewriteRule ^/evertrue-connect(.*)       /          [R=301,L]
+  RewriteRule ^/services(.*)               /          [R=301,L]
+  RewriteRule ^/support/?$                 /          [R=301,L]
+  RewriteRule ^/about-evertrue(.*)         /our-story [R=301,L]
+  RewriteRule ^/our-mission(.*)            /our-story [R=301,L]
+
+  # Rewrites for product verify/landing pages
+  # Redirect to standalone auth verify
+  RewriteRule ^/alumni/([^/]+)/verify/(.*)    http://verify.evertrue.com/$1/$2             [R=301,QSA,NC,L]
+  # App store redirection
+  # TODO Should be moved to AMP landing page (see below)
+  #       Need to add click tracking to AMP landing page
+  #       See load_appstore.php:56
+  RewriteRule ^/alumni/([^/]+)/(ios|android)  /alumni/load_appstore.php?platform=$2&oid=$1 [L]
+
+  # Organization Terms
+  RewriteCond %{REQUEST_URI} !=/alumni/brown/terms.html
+  RewriteRule ^/alumni/(.+?)/terms\.html      /alumni/terms.php?oid=$1 [NC,L]
+
+  # Redirect (301) to new AMP landing page, preserving params
+  RewriteRule ^/alumni/([^/]+)/?$             https://web.evertrue.com/network/$1 [R=301,L]
+
+  # AWS LB ping location
+  RewriteRule ^/ping?$ /ping.txt [L]
+
+  # WordPress uploads redirect
+  RewriteRule ^/blog/wp-content/uploads/(.*) /site/wp-content/uploads/$1 [R=301,NC,L]
 </VirtualHost>
