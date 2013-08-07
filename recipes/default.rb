@@ -20,7 +20,7 @@ apache_module "php5" do
   filename "libphp5.so"
 end
 
-directory node['apache']['docroot'] do
+directory "/var/www/www.evertrue.com" do
   owner "deploy"
   group "deploy"
   mode 00755
@@ -29,7 +29,7 @@ end
 
 # Install basic auth for /apps
 # TODO Remove this when /apps moves to its own project/vhost
-cookbook_file "#{node['apache']['docroot']}/passwd_apps" do
+cookbook_file "/var/www/www.evertrue.com/passwd_apps" do
   source "passwd_apps"
   mode 00644
   owner "deploy"
