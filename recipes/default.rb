@@ -37,6 +37,15 @@ cookbook_file "#{node['apache']['docroot']}/passwd_apps" do
   action :create_if_missing
 end
 
+# Install some excellent Apache config rules, courtesy of h5bp.com
+cookbook_file "#{node['apache']['dir']}/conf.d" do
+  source "h5bp.conf"
+  mode 00644
+  owner "root"
+  group node['apache']['root_group']
+  action :create_if_missing
+end
+
 web_app "evertrue_com" do
   server_name node['apache']['server_name']
   server_aliases node['apache']['server_aliases']
