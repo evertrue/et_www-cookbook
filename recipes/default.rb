@@ -20,6 +20,11 @@ apache_module "php5" do
   filename "libphp5.so"
 end
 
+# Install PHP's MySQL module
+package "php5-mysql" do
+  action :install
+end
+
 directory "/var/www/www.evertrue.com" do
   owner "deploy"
   group "deploy"
