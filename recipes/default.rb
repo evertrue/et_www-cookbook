@@ -25,6 +25,11 @@ package "php5-mysql" do
   action :install
 end
 
+# Install APC for local opscode caching
+package "php-apc" do
+  action :install
+end
+
 directory "/var/www/www.evertrue.com" do
   owner "deploy"
   group "deploy"
