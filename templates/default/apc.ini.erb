@@ -1,0 +1,28 @@
+; /etc/php.d/apc.ini
+
+extension = apc.so
+
+apc.enabled                = <%= @node['php']['apc']['enabled'] %>
+apc.shm_segments           = <%= @node['php']['apc']['shm_segments'] %>
+apc.shm_size               = <%= @node['php']['apc']['shm_size'] %>
+apc.optimization           = <%= @node['php']['apc']['optimization'] %>
+apc.num_files_hint         = <%= @node['php']['apc']['num_files_hint'] %>
+apc.ttl                    = <%= @node['php']['apc']['ttl'] %>
+apc.user_ttl               = <%= @node['php']['apc']['user_ttl'] %>
+apc.gc_ttl                 = <%= @node['php']['apc']['gc_ttl'] %>
+apc.cache_by_default       = <%= @node['php']['apc']['cache_by_default'] %>
+apc.filters                = "<%= @node['php']['apc']['filters'] %>"
+apc.mmap_file_mask         = "<%= @node['php']['apc']['mmap_file_mask'] %>"
+apc.slam_defense           = <%= @node['php']['apc']['slam_defense'] %>
+apc.file_update_protection = <%= @node['php']['apc']['file_update_protection'] %>
+apc.enable_cli             = <%= @node['php']['apc']['enable_cli'] %>
+apc.max_file_size          = <%= @node['php']['apc']['max_file_size'] %>
+apc.stat                   = <%= @node['php']['apc']['stat'] %>
+apc.write_lock             = <%= @node['php']['apc']['write_lock'] %>
+apc.report_autofilter      = <%= @node['php']['apc']['report_autofilter'] %>
+apc.include_once_override  = <%= @node['php']['apc']['include_once_override'] %>
+apc.localcache             = <%= @node['php']['apc']['localcache'] %>
+apc.localcache.size        = <%= @node['php']['apc']['localcache.size'] %>
+apc.coredump_unmap         = <%= @node['php']['apc']['coredump_unmap'] %>
+apc.stat_ctime             = <%= @node['php']['apc']['stat_ctime'] %>
+apc.canonicalize           = <%= @node['php']['apc']['canonicalize'] %>

@@ -14,6 +14,7 @@ end
 
 include_recipe "apache2"
 include_recipe "apache2::mod_php5"
+include_recipe "php"
 include_recipe "et_users::evertrue"
 
 apache_module "php5" do
@@ -28,6 +29,15 @@ end
 # Install APC for local opscode caching
 package "php-apc" do
   action :install
+end
+
+# Configure APC
+template "#{node['php']['ext_conf_dir']}/apc.ini" do
+  source "apc.ini.erb"
+  owner "root"
+  group "root"
+  mode 0644
+  notifies :restart, "service[apache2]", :delayed
 end
 
 directory "/var/www/www.evertrue.com" do
