@@ -1,4 +1,5 @@
 set['apache']['listen_ports'] = ["80"]
+set['apache']['contact'] = "devops@evertrue.com"
 set['apache']['docroot'] = "/var/www/www.evertrue.com/current/htdocs"
 set['apache']['server_name'] = "www.evertrue.com"
 set['apache']['server_aliases'] = [
@@ -10,3 +11,12 @@ set['apache']['server_aliases'] = [
   'admin.evertrue.com'
 ]
 set['apache']['allow_override'] = [ 'All' ]
+
+# Set Apache modules to enable
+set['apache']['default_modules'] = %w{
+  status alias auth_basic authn_file authz_default authz_groupfile authz_host authz_user
+  dir env mime setenvif deflate expires headers php5
+}
+
+# mod_status Allow list, space separated list of allowed entries
+set['apache']['status_allow_list'] = "127.0.0.1 localhost ip6-localhost"
