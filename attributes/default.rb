@@ -20,3 +20,13 @@ set['apache']['default_modules'] = %w{
 
 # mod_status Allow list, space separated list of allowed entries
 set['apache']['status_allow_list'] = "127.0.0.1 localhost ip6-localhost"
+# Set ExtendedStatus to true to supply MeetMe New Relic plugin w/ metrics
+set['apache']['ext_status'] = true
+
+# New Relic application monitoring config
+set['newrelic']['application_monitoring']['license'] = Chef::EncryptedDataBagItem.load("secrets","api_keys")["newrelic"]
+set['newrelic']['appname'] = "www"
+set['newrelic']['application_monitoring']['logfile'] = "/var/log/newrelic/php_agent.log"
+
+# New Relic MeetMe plugin agent config
+set['newrelic-ng']['plugin-agent']['license_key'] = Chef::EncryptedDataBagItem.load("secrets","api_keys")["newrelic"]

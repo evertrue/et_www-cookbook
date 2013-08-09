@@ -15,6 +15,9 @@ end
 include_recipe "apache2"
 include_recipe "apache2::mod_php5"
 include_recipe "et_users::evertrue"
+include_recipe "newrelic::repository"
+include_recipe "newrelic::php-agent"
+include_recipe "newrelic-ng::plugin-agent-install"
 
 apache_module "php5" do
   filename "libphp5.so"
@@ -55,4 +58,30 @@ web_app "evertrue_com" do
   server_name node['apache']['server_name']
   server_aliases node['apache']['server_aliases']
   docroot node['apache']['docroot']
+end
+
+newrelic_ng_plugin_agent 'custom' do
+  license_key node['newrelic-ng']['plugin-agent']['license_key']
+
+  # additional plugin-agent configuration options
+  poll_interval  60
+  logfile        '/tmp/plugin-agent.log'
+  pidfile        '/tmp/plugin-agent.pid'
+
+  # set your service configuration
+  service_config <<-EOS
+apache_httpd:
+  scheme: http
+  host: localhost
+  verify_ssl_cert: true
+  port: 80
+  path: /server-status
+
+php_apc:
+  scheme: http
+  host: localhost
+  verify_ssl_cert: true
+  port: 80
+  path: /apc-nrp.php
+EOS
 end
