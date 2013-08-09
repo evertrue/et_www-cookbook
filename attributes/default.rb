@@ -10,7 +10,6 @@ set['apache']['server_aliases'] = [
   'evertruemobile.com',
   'admin.evertrue.com'
 ]
-set['apache']['allow_override'] = [ 'All' ]
 
 # Set Apache modules to enable
 set['apache']['default_modules'] = %w{
