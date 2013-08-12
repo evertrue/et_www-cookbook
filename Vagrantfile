@@ -87,5 +87,6 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "minitest-handler::default"
     chef.add_recipe "et_www"
     chef.add_recipe "et_www::apc"
+    chef.add_recipe "et_www::newrelic"
   end
 end
