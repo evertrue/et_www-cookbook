@@ -109,6 +109,9 @@
   # Redirect (301) to new AMP landing page, preserving params
   RewriteRule ^/alumni/([^/]+)/?$             https://web.evertrue.com/network/$1 [R=301,L]
 
+  # Onboarding cleanup/simplification (see github.com/evertrue/www/pull/39)
+  RewriteRule ^/onboarding/(premium/)?(design|kickoff)\.html$     /onboarding/ [R=301,NC,L]
+
   # AWS LB ping location
   RewriteRule ^/ping?$ /ping.txt [L]
 
