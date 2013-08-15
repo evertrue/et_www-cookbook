@@ -13,7 +13,7 @@ set['apache']['server_aliases'] = [
 
 # Set Apache modules to enable
 set['apache']['default_modules'] = %w{
-  status alias auth_basic authn_file authz_default authz_groupfile authz_host authz_user
+  status alias auth_basic authn_file authz_groupfile authz_host authz_user
   dir env mime setenvif deflate expires headers php5
 }
 
