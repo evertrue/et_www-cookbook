@@ -20,5 +20,6 @@ set['apache']['default_modules'] = %w{
 # mod_status Allow list, space separated list of allowed entries
 set['apache']['status_allow_list'] = "127.0.0.1 localhost ip6-localhost"
 
-# S3 bucket name
-set['s3']['bucket'] = 'www.evertrue.com'
+# S3FS bucket data bag details
+set["s3fs"]["data_bag"]["name"] = "secrets"
+set["s3fs"]["data_bag"]["item"] = "s3fs-www-bucket-creds"

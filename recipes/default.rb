@@ -12,16 +12,11 @@ case node['platform_family']
     include_recipe "apt"
 end
 
-# Grab ETWorkerWWW AWS credentials for S3FS-C
-aws_creds = EncryptedDataBagItem.load("secrets", "aws_credentials")['etworkerwww']
-node.set['access_key'] = aws_creds['access_key_id']
-node.set['secret_key'] = aws_creds['secret_access_key']
-
 include_recipe "apache2"
 include_recipe "apache2::mod_php5"
 include_recipe "et_users::evertrue"
 include_recipe "git"
-include_recipe "s3fs-c"
+include_recipe "s3fs"
 
 apache_module "php5" do
   filename "libphp5.so"
