@@ -112,6 +112,9 @@
   # Onboarding cleanup/simplification (see github.com/evertrue/www/pull/39)
   RewriteRule ^/onboarding/(premium/)?(design|kickoff)\.html$     /onboarding/ [R=301,NC,L]
 
+  # Redirect to HubSpot landing page for Data Monster
+  RewriteRule ^/datamonster http://get.evertrue.com/data-monster [R=301,NC,L]
+
   # AWS LB ping location
   RewriteRule ^/ping?$ /ping.txt [L]
 
