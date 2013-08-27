@@ -94,20 +94,20 @@
   RewriteRule ^/our-mission(.*)            /our-story [R=301,L]
 
   # Rewrites for product verify/landing pages
+  RewriteRule ^/alumni/([^/]+)/verify/help    /alumni/verify_help.html            [L]
   # Redirect to standalone auth verify
-  RewriteRule ^/alumni/([^/]+)/verify/(.*)    http://verify.evertrue.com/$1/$2             [R=301,QSA,NC,L]
-  # App store redirection
-  # TODO Should be moved to AMP landing page (see below)
-  #       Need to add click tracking to AMP landing page
-  #       See load_appstore.php:56
-  RewriteRule ^/alumni/([^/]+)/(ios|android)  /alumni/load_appstore.php?platform=$2&oid=$1 [L]
+  RewriteRule ^/alumni/([^/]+)/verify/(.*)    http://verify.evertrue.com/$1/$2    [R=301,QSA,NC,L]
 
   # Organization Terms
   RewriteCond %{REQUEST_URI} !=/alumni/brown/terms.html
-  RewriteRule ^/alumni/(.+?)/terms\.html      /alumni/terms.php?oid=$1 [NC,L]
+  RewriteRule ^/alumni/(.+?)/terms\.html      /alumni/terms.php?oid=$1            [NC,L]
 
-  # Redirect (301) to new AMP landing page, preserving params
-  RewriteRule ^/alumni/([^/]+)/?$             https://web.evertrue.com/network/$1 [R=301,L]
+  # Redirect (301) to Web/Console landing page, preserving params
+  RewriteRule ^/alumni/([^/]+)(/?)((ios|android)/?)?$  https://web.evertrue.com/network/$1$2$3  [R=301,L]
+
+  # Organization Terms
+  RewriteCond %{REQUEST_URI} !=/alumni/brown/terms.html
+  RewriteRule ^/alumni/(.+?)/terms\.html      /alumni/terms.php?oid=$1         [NC,L]
 
   # Onboarding cleanup/simplification (see github.com/evertrue/www/pull/39)
   RewriteRule ^/onboarding/(premium/)?(design|kickoff)\.html$     /onboarding/ [R=301,NC,L]
