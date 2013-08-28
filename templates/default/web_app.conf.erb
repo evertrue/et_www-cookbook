@@ -94,7 +94,6 @@
   RewriteRule ^/our-mission(.*)            /our-story [R=301,L]
 
   # Rewrites for product verify/landing pages
-  RewriteRule ^/alumni/([^/]+)/verify/help    /alumni/verify_help.html            [L]
   # Redirect to standalone auth verify
   RewriteRule ^/alumni/([^/]+)/verify/(.*)    http://verify.evertrue.com/$1/$2    [R=301,QSA,NC,L]
 
@@ -103,14 +102,11 @@
   RewriteRule ^/alumni/(.+?)/terms\.html      /alumni/terms.php?oid=$1            [NC,L]
 
   # Redirect (301) to Web/Console landing page, preserving params
-  RewriteRule ^/alumni/([^/]+)(/?)((ios|android)/?)?$  https://web.evertrue.com/network/$1$2$3  [R=301,L]
-
-  # Organization Terms
-  RewriteCond %{REQUEST_URI} !=/alumni/brown/terms.html
-  RewriteRule ^/alumni/(.+?)/terms\.html      /alumni/terms.php?oid=$1         [NC,L]
+  RewriteRule ^/alumni/([^/]+)(/?)((ios|android))?/?$  https://web.evertrue.com/network/$1$2$3  [R=301,L]
 
   # Onboarding cleanup/simplification (see github.com/evertrue/www/pull/39)
-  RewriteRule ^/onboarding/(premium/)?(design|kickoff)\.html$     /onboarding/ [R=301,NC,L]
+  RewriteRule ^/onboarding/premium(/)?((design|kickoff|index)\.html)?$  /onboarding/ [R=301,NC,L]
+  RewriteRule ^/onboarding/(design|kickoff)\.html$                      /onboarding/ [R=301,NC,L]
 
   # Redirect to HubSpot landing page for Data Monster
   RewriteRule ^/datamonster http://get.evertrue.com/data-monster [R=301,NC,L]
