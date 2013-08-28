@@ -6,6 +6,9 @@ Vagrant.configure("2") do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
+  # Install the latest Chef via vagrant-omnibus
+  config.omnibus.chef_version = :latest
+
   config.vm.hostname = "et-www-berkshelf"
 
   # Every Vagrant virtual environment requires a box to build off of.
@@ -69,8 +72,6 @@ Vagrant.configure("2") do |config|
   # An array of symbols representing groups of cookbook described in the Vagrantfile
   # to skip installing and copying to Vagrant's shelf.
   # config.berkshelf.except = []
-
-  config.vm.provision :shell, :inline => "curl -s -L https://www.opscode.com/chef/install.sh | sudo bash"
 
   if ENV['CHEF_REPO']
     chef_repo = ENV['CHEF_REPO']
