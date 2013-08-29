@@ -8,7 +8,8 @@ set['apache']['server_aliases'] = [
   'new.evertrue.com',
   'www.evertruemobile.com',
   'evertruemobile.com',
-  'admin.evertrue.com'
+  'admin.evertrue.com',
+  'stage-www.evertrue.com'
 ]
 
 # Set Apache modules to enable

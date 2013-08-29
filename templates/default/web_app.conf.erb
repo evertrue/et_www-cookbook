@@ -73,6 +73,7 @@
   # Excludes AWS ELB ping requests
   RewriteCond %{REQUEST_URI} !^\/ping
   RewriteCond %{HTTP_HOST}   !^<%= @params[:server_name] %> [NC]
+  RewriteCond %{HTTP_HOST}   !^stage-www.evertrue.com
   RewriteCond %{HTTP_HOST}   !^localhost$
   RewriteRule ^/(.*)$        http://<%= @params[:server_name] %>/$1 [L,R=301]
 
