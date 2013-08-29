@@ -4,7 +4,7 @@ maintainer_email 'eric.herot@evertrue.com'
 license          'All rights reserved'
 description      'Installs/Configures et_www'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.6.8'
+version          '0.7.0'
 
 depends 'et_users'
 depends 'apt'
@@ -12,3 +12,4 @@ depends 'apache2'
 depends 'php'
 depends 's3fs'
 depends 'git'
+depends 'newrelic'
