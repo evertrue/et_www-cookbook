@@ -27,6 +27,11 @@ package "php5-mysql" do
   action :install
 end
 
+# Install PHP cURL module
+package "php5-curl" do
+  action :install
+end
+
 directory "/var/www/www.evertrue.com" do
   owner "deploy"
   group "deploy"
