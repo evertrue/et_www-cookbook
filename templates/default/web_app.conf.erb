@@ -107,12 +107,14 @@
     <IfModule mod_headers.c>
       Header unset Set-Cookie
       Header unset Last-Modified
+      Header set X-Powered-By "W3 Total Cache/0.9.3"
     </IfModule>
   </FilesMatch>
 
   <FilesMatch "\.(html|htm|rtf|rtx|svg|svgz|txt|xsd|xsl|xml|HTML|HTM|RTF|RTX|SVG|SVGZ|TXT|XSD|XSL|XML)$">
     <IfModule mod_headers.c>
       Header unset Last-Modified
+      Header set X-Powered-By "W3 Total Cache/0.9.3"
     </IfModule>
   </FilesMatch>
 
@@ -120,21 +122,13 @@
     <IfModule mod_headers.c>
       Header unset Set-Cookie
       Header unset Last-Modified
+      Header set X-Powered-By "W3 Total Cache/0.9.3"
     </IfModule>
   </FilesMatch>
   # END W3TC Browser Cache
 
-  # BEGIN W3TC CDN
-  <FilesMatch "\.(ttf|otf|eot|woff)$">
-    <IfModule mod_headers.c>
-      Header set Access-Control-Allow-Origin "*"
-    </IfModule>
-  </FilesMatch>
-  # END W3TC CDN
-
   # BEGIN W3TC Skip 404 error handling by WordPress for static files
   <IfModule mod_rewrite.c>
-    RewriteEngine On
     RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-f
     RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} !(robots\.txt|sitemap(_index)?\.xml(\.gz)?|[a-z0-9_\-]+-sitemap([0-9]+)?\.xml(\.gz)?)
@@ -142,6 +136,14 @@
     RewriteRule .* - [L]
   </IfModule>
   # END W3TC Skip 404 error handling by WordPress for static files
+
+  # BEGIN W3TC CDN
+  <FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css)$">
+    <IfModule mod_headers.c>
+      Header set Access-Control-Allow-Origin "*"
+    </IfModule>
+  </FilesMatch>
+  # END W3TC CDN
 
   # BEGIN WordPress
   <IfModule mod_rewrite.c>
