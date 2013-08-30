@@ -145,7 +145,7 @@
 
   # BEGIN WordPress
   <IfModule mod_rewrite.c>
-    RewriteRule ^index\.php$ - [L]
+    RewriteRule ^/index\.php$ - [L]
 
     RewriteCond %{REQUEST_URI} !=/server-status
     RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-f
