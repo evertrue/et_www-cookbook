@@ -2,7 +2,6 @@
   ServerName <%= @params[:server_name] %>
   ServerAlias <% @params[:server_aliases].each do |a| %><%= a %> <% end %>
   DocumentRoot <%= @params[:docroot] %>
-  RewriteEngine On
 
   # Lock things up by default
   <Directory />
@@ -52,71 +51,56 @@
   DirectoryIndex <%= [@params[:directory_index]].flatten.join " " %>
   <% end -%>
 
-  RewriteEngine On
-  RewriteLog <%= node['apache']['log_dir'] %>/<%= @application_name %>-rewrite.log
-  RewriteLogLevel 0
+  <IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteLog <%= node['apache']['log_dir'] %>/<%= @application_name %>-rewrite.log
+    RewriteLogLevel 0
 
-  # admin.evertrue rules are commented out for now due to issues w/ caching
-  # across multiple instances. Will re-enable once that is sorted
+    # Canonical host, <%= @params[:server_name] %>
+    # Excludes AWS ELB pings, stage requests, localhost requests
+    RewriteCond %{REQUEST_URI} !^\/ping
+    RewriteCond %{HTTP_HOST}   !^<%= @params[:server_name] %> [NC]
+    RewriteCond %{HTTP_HOST}   !^stage-<%= @params[:server_name] %>
+    RewriteCond %{HTTP_HOST}   !^localhost$
+    RewriteRule ^/(.*)$        http://<%= @params[:server_name] %>/$1 [L,R=301]
 
-  # # Force all admin traffic to correct hostname/server
-  # RewriteCond %{HTTP_HOST} !^admin.evertrue.com$
-  # RewriteCond %{HTTP_HOST} !amazonaws.com$
-  # RewriteRule ^/(site/)?wp-admin/(.*)$ http://admin.evertrue.com/site/wp-admin/$2 [QSA,L,R=301]
+    # Allows takeover of site by maintenance file
+    RewriteCond %{DOCUMENT_ROOT}/maintenance.html -f
+    RewriteCond %{SCRIPT_FILENAME} !maintenance.html
+    RewriteRule ^.*$ /system/maintenance.html [L]
 
-  # # Force all admin traffic to correct hostname/server
-  # RewriteCond %{HTTP_HOST} !^admin.evertrue.com$
-  # RewriteCond %{HTTP_HOST} !amazonaws.com$
-  # RewriteRule ^/(site/)?wp-login.php$ http://admin.evertrue.com/site/wp-login.php [QSA,L,R=301]
+    # Legacy Pages
+    RewriteRule ^/about-evertrue-connect(.*) /          [R=301,L]
+    RewriteRule ^/evertrue-connect(.*)       /          [R=301,L]
+    RewriteRule ^/services(.*)               /          [R=301,L]
+    RewriteRule ^/support/?$                 /          [R=301,L]
+    RewriteRule ^/about-evertrue(.*)         /our-story [R=301,L]
+    RewriteRule ^/our-mission(.*)            /our-story [R=301,L]
 
-  # Canonical host, <%= @params[:server_name] %>
-  # Excludes AWS ELB ping requests
-  RewriteCond %{REQUEST_URI} !^\/ping
-  RewriteCond %{HTTP_HOST}   !^<%= @params[:server_name] %> [NC]
-  RewriteCond %{HTTP_HOST}   !^stage-www.evertrue.com
-  RewriteCond %{HTTP_HOST}   !^localhost$
-  RewriteRule ^/(.*)$        http://<%= @params[:server_name] %>/$1 [L,R=301]
+    # Rewrites for product verify/landing pages
+    # Redirect to standalone auth verify
+    RewriteRule ^/alumni/([^/]+)/verify/(.*)    http://verify.evertrue.com/$1/$2    [R=301,QSA,NC,L]
 
-  # # Force all non-admin traffic to correct hostname
-  # RewriteCond %{HTTP_HOST}   ^admin.evertrue.com$
-  # RewriteCond %{REQUEST_URI} !^/site/(wp-content|wp-includes|wp-admin|wp-login.php)
-  # RewriteRule ^(.*)$         http://www.evertrue.com/$1 [QSA,L,R=301]
+    # Organization Terms
+    RewriteCond %{REQUEST_URI} !=/alumni/brown/terms.html
+    RewriteRule ^/alumni/(.+?)/terms\.html      /alumni/terms.php?oid=$1            [NC,L]
 
-  RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
-  RewriteCond %{SCRIPT_FILENAME} !maintenance.html
-  RewriteRule ^.*$ /system/maintenance.html [L]
+    # Redirect (301) to Web/Console landing page, preserving params
+    RewriteRule ^/alumni/([^/]+)(/?)((ios|android))?/?$  https://web.evertrue.com/network/$1$2$3  [R=301,L]
 
-  # Legacy Pages
-  RewriteRule ^/about-evertrue-connect(.*) /          [R=301,L]
-  RewriteRule ^/evertrue-connect(.*)       /          [R=301,L]
-  RewriteRule ^/services(.*)               /          [R=301,L]
-  RewriteRule ^/support/?$                 /          [R=301,L]
-  RewriteRule ^/about-evertrue(.*)         /our-story [R=301,L]
-  RewriteRule ^/our-mission(.*)            /our-story [R=301,L]
+    # Onboarding cleanup/simplification (see github.com/evertrue/www/pull/39)
+    RewriteRule ^/onboarding/premium(/)?((design|kickoff|index)\.html)?$  /onboarding/ [R=301,NC,L]
+    RewriteRule ^/onboarding/(design|kickoff)\.html$                      /onboarding/ [R=301,NC,L]
 
-  # Rewrites for product verify/landing pages
-  # Redirect to standalone auth verify
-  RewriteRule ^/alumni/([^/]+)/verify/(.*)    http://verify.evertrue.com/$1/$2    [R=301,QSA,NC,L]
+    # Redirect to HubSpot landing page for Data Monster
+    RewriteRule ^/datamonster http://get.evertrue.com/data-monster [R=301,NC,L]
 
-  # Organization Terms
-  RewriteCond %{REQUEST_URI} !=/alumni/brown/terms.html
-  RewriteRule ^/alumni/(.+?)/terms\.html      /alumni/terms.php?oid=$1            [NC,L]
+    # AWS LB ping location
+    RewriteRule ^/ping?$ /ping.txt [L]
 
-  # Redirect (301) to Web/Console landing page, preserving params
-  RewriteRule ^/alumni/([^/]+)(/?)((ios|android))?/?$  https://web.evertrue.com/network/$1$2$3  [R=301,L]
-
-  # Onboarding cleanup/simplification (see github.com/evertrue/www/pull/39)
-  RewriteRule ^/onboarding/premium(/)?((design|kickoff|index)\.html)?$  /onboarding/ [R=301,NC,L]
-  RewriteRule ^/onboarding/(design|kickoff)\.html$                      /onboarding/ [R=301,NC,L]
-
-  # Redirect to HubSpot landing page for Data Monster
-  RewriteRule ^/datamonster http://get.evertrue.com/data-monster [R=301,NC,L]
-
-  # AWS LB ping location
-  RewriteRule ^/ping?$ /ping.txt [L]
-
-  # WordPress uploads redirect
-  RewriteRule ^/blog/wp-content/uploads/(.*) /site/wp-content/uploads/$1 [R=301,NC,L]
+    # WordPress uploads redirect
+    RewriteRule ^/blog/wp-content/uploads/(.*) /site/wp-content/uploads/$1 [R=301,NC,L]
+  </IfModule>
 
   # BEGIN W3TC Browser Cache
   <FilesMatch "\.(css|htc|js|js2|js3|js4|CSS|HTC|JS|JS2|JS3|JS4)$">
@@ -161,7 +145,6 @@
 
   # BEGIN WordPress
   <IfModule mod_rewrite.c>
-    RewriteEngine On
     RewriteRule ^index\.php$ - [L]
 
     RewriteCond %{REQUEST_URI} !=/server-status
