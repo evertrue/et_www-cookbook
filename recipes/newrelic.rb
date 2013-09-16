@@ -14,11 +14,6 @@ include_recipe "newrelic::plugin-agent"
 newrelic_plugin_agent 'www' do
   license_key node['newrelic']['application_monitoring']['license']
 
-  # additional plugin-agent configuration options
-  poll_interval  60
-  logfile        '/tmp/plugin-agent.log'
-  pidfile        '/tmp/plugin-agent.pid'
-
   # set your service configuration
   service_config <<-EOS
 apache_httpd:
