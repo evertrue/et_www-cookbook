@@ -14,8 +14,8 @@ end
 
 directory "/var/www/www.evertrue.com" do
   owner "deploy"
-  group "deploy"
-  mode 00755
+  group "www-data"
+  mode 02775
   action :create
 end
 
@@ -25,7 +25,7 @@ cookbook_file "/var/www/www.evertrue.com/passwd_apps" do
   source "passwd_apps"
   mode 00644
   owner "deploy"
-  group "deploy"
+  group "www-data"
   action :create_if_missing
 end
 
