@@ -12,6 +12,12 @@ package "php5-curl" do
   action :install
 end
 
+group "deploy" do
+  members "www-data"
+  action :modify
+  append true
+end
+
 directory "/var/www/www.evertrue.com" do
   owner "deploy"
   group "www-data"
