@@ -4,7 +4,7 @@ maintainer_email 'jeff@evertrue.com'
 license          'All rights reserved'
 description      'Installs/Configures et_www'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.8.3'
+version          '0.8.4'
 
 depends 'et_users'
 depends 'apt'
