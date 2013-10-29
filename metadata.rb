@@ -1,14 +1,14 @@
 name             'et_www'
 maintainer       'EverTrue, Inc.'
-maintainer_email 'jeff@evertrue.com'
+maintainer_email 'devops@evertrue.com'
 license          'All rights reserved'
 description      'Installs/Configures et_www'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.8.4'
+version          '0.8.5'
 
 depends 'et_users'
 depends 'apt'
-depends 'apache2'
+depends 'apache2', '~> 1.6.6'
 depends 'php'
 depends 's3fs'
 depends 'git'
