@@ -7,6 +7,11 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# Ensure CopperEgg doesn't treat this like a real instance during testing
+if node.environment == '_default'
+  node.set[:copperegg][:tags] = 'testing'
+end
+
 case node['platform_family']
   when "debian"
     include_recipe "apt"
