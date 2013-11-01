@@ -7,15 +7,13 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "newrelic::repository"
-include_recipe "newrelic::php-agent"
-include_recipe "newrelic::plugin-agent"
+# Install the New Relic repository, system monitor, PHP Agent & Plugin Agent
+include_recipe "newrelic-ng"
+include_recipe "newrelic-ng::php-agent-default"
+include_recipe "newrelic-ng::plugin-agent-default"
 
-newrelic_plugin_agent 'www' do
-  license_key node['newrelic']['application_monitoring']['license']
-
-  # set your service configuration
-  service_config <<-EOS
+# Pass along YAML settings for Plugin Agent for Apache & APC
+node.normal['newrelic-ng']['plugin-agent']['service_config'] = <<-EOS
 apache_httpd:
   scheme: http
   host: localhost
@@ -30,4 +28,3 @@ php_apc:
   port: 80
   path: /apc-nrp.php
 EOS
-end
