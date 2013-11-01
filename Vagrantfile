@@ -87,7 +87,6 @@ Vagrant.configure("2") do |config|
     chef.data_bags_path = "#{chef_repo}/data_bags"
     chef.encrypted_data_bag_secret_key_path = "#{ENV['HOME']}/.chef/encrypted_data_bag_secret"
 
-    chef.add_recipe "minitest-handler::default"
     chef.add_recipe "et_www"
     chef.add_recipe "et_www::apc"
     chef.add_recipe "et_www::newrelic"
