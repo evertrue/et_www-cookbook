@@ -111,7 +111,8 @@
     RewriteCond %{HTTP_USER_AGENT} ^LeechFTP [NC,OR]
     RewriteCond %{HTTP_USER_AGENT} libwww [NC,OR]
     RewriteCond %{HTTP_USER_AGENT} libwww-perl [NC,OR]
-    RewriteCond %{HTTP_USER_AGENT} ^Link [NC,OR]
+    # Disabled b/c it breaks LinkedIn's share scraper bot
+    # RewriteCond %{HTTP_USER_AGENT} ^Link [NC,OR]
     RewriteCond %{HTTP_USER_AGENT} LinksManager.com_bot [NC,OR]
     RewriteCond %{HTTP_USER_AGENT} linkwalker [NC,OR]
     RewriteCond %{HTTP_USER_AGENT} lwp-trivial [NC,OR]
