@@ -25,16 +25,6 @@ directory "/var/www/www.evertrue.com" do
   action :create
 end
 
-# Install basic auth for /apps
-# TODO Remove this when /apps moves to its own project/vhost
-cookbook_file "/var/www/www.evertrue.com/passwd_apps" do
-  source "passwd_apps"
-  mode 00644
-  owner "deploy"
-  group "www-data"
-  action :create_if_missing
-end
-
 # Install some excellent Apache config rules, courtesy of h5bp.com
 cookbook_file "#{node['apache']['dir']}/conf.d/h5bp.conf" do
   source "h5bp.conf"

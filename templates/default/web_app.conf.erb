@@ -18,13 +18,6 @@
     Allow from all
   </Directory>
 
-  <Directory "<%= @params[:docroot] %>/apps">
-    AuthType Basic
-    AuthName "EverTrue Apps Install"
-    AuthUserFile /var/www/www.evertrue.com/passwd_apps
-    Require user apps
-  </Directory>
-
   # Allow access to server status locally only
   <Location "/server-status">
     SetHandler server-status
