@@ -1,19 +1,19 @@
 # Defaults for APC
 default['php']['apc']['enabled']                = 1
 default['php']['apc']['shm_segments']           = 1
-default['php']['apc']['shm_size']               = "192M"
+default['php']['apc']['shm_size']               = '192M'
 default['php']['apc']['optimization']           = 0
 default['php']['apc']['num_files_hint']         = 4096
 default['php']['apc']['ttl']                    = 3600
 default['php']['apc']['user_ttl']               = 3600
 default['php']['apc']['gc_ttl']                 = 1800
 default['php']['apc']['cache_by_default']       = 1
-default['php']['apc']['filters']                = ""
-default['php']['apc']['mmap_file_mask']         = "/apc.shm.XXXXXX"
+default['php']['apc']['filters']                = ''
+default['php']['apc']['mmap_file_mask']         = '/apc.shm.XXXXXX'
 default['php']['apc']['slam_defense']           = 0
 default['php']['apc']['file_update_protection'] = 2
 default['php']['apc']['enable_cli']             = 0
-default['php']['apc']['max_file_size']          = "2M"
+default['php']['apc']['max_file_size']          = '2M'
 default['php']['apc']['stat']                   = 1
 default['php']['apc']['write_lock']             = 1
 default['php']['apc']['report_autofilter']      = 0

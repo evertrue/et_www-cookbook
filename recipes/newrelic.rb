@@ -8,9 +8,9 @@
 #
 
 # Install the New Relic repository, system monitor, PHP Agent & Plugin Agent
-include_recipe "newrelic-ng"
-include_recipe "newrelic-ng::php-agent-default"
-include_recipe "newrelic-ng::plugin-agent-default"
+include_recipe 'newrelic-ng'
+include_recipe 'newrelic-ng::php-agent-default'
+include_recipe 'newrelic-ng::plugin-agent-default'
 
 # Pass along YAML settings for Plugin Agent for Apache & APC
 node.normal['newrelic-ng']['plugin-agent']['service_config'] = <<-EOS
