@@ -1,3 +1,9 @@
+## 1.1.3
+
+* Update Gemfile to have more sane versions
+* Add Foodcritic & Rubocop
+* Clean up code as per Rubocop
+
 ## 1.1.2
 
 * Clean up Berksfile to use Chef Server as The Truth
