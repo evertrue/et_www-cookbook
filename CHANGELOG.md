@@ -1,3 +1,7 @@
+## 1.1.4
+
+* Use more forward-thinking version constraints for apache2 & newrelic-ng cookbooks
+
 ## 1.1.3
 
 * Update Gemfile to have more sane versions
