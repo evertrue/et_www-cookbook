@@ -1,3 +1,7 @@
+## 1.1.5
+
+* Remove setting of CopperEgg attributes
+
 ## 1.1.4
 
 * Use more forward-thinking version constraints for apache2 & newrelic-ng cookbooks
