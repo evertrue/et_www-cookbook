@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+1.2.0
+-----
+
+* Add clickjacking protection via Apache `Header` directive
+
 1.1.5
 -----
 
