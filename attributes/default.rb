@@ -13,10 +13,23 @@ set['apache']['server_aliases'] = [
 ]
 
 # Set Apache modules to enable
-set['apache']['default_modules'] = %w{
-  status alias auth_basic authn_file authz_groupfile authz_host authz_user
-  dir env mime setenvif deflate expires headers php5
-}
+set['apache']['default_modules'] = %w(
+  status
+  alias
+  auth_basic
+  authn_file
+  authz_groupfile
+  authz_host
+  authz_user
+  dir
+  env
+  mime
+  setenvif
+  deflate
+  expires
+  headers
+  php5
+)
 
 # mod_status Allow list, space separated list of allowed entries
 set['apache']['status_allow_list'] = '127.0.0.1 localhost ip6-localhost'
