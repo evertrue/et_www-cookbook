@@ -1,9 +1,3 @@
-chef_api :config
-site :opscode
+source 'https://supermarket.getchef.com'
 
 metadata
-
-group :integration do
-  cookbook 'chef-solo-search', github: 'edelight/chef-solo-search'
-  cookbook 'minitest-handler'
-end
