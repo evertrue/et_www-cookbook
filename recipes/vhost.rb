@@ -1,15 +1,22 @@
+#
+# Cookbook Name:: et_www
+# Recipe:: vhost
+#
+# Copyright (C) 2013 EverTrue, Inc.
+#
+# All rights reserved - Do Not Redistribute
+#
+
 apache_module 'php5' do
   filename 'libphp5.so'
 end
 
-# Install PHP's MySQL module
-package 'php5-mysql' do
-  action :install
-end
-
-# Install PHP cURL module
-package 'php5-curl' do
-  action :install
+# Install PHP's MySQL & cURL modules
+%w(
+  php5-mysql
+  php5-curl
+).each do |pkg|
+  package pkg
 end
 
 group 'deploy' do
