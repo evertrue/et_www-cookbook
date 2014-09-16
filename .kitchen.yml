@@ -14,9 +14,6 @@ platforms:
   - name: ubuntu-12.04
 
 suites:
-- name: default
-  run_list:
-    - recipe[et_www::default]
-  attributes:
-    newrelic-ng:
-      license_key: TESTKEY_PHP_AGENT
+  - name: default
+    run_list:
+      - recipe[et_www::default]
