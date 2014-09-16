@@ -1,9 +1,10 @@
-# Defaults for APC
+# See http://php.net/manual/en/apc.configuration.php
 default['php']['apc']['enabled']                = 1
 default['php']['apc']['shm_segments']           = 1
 default['php']['apc']['shm_size']               = '192M'
 default['php']['apc']['optimization']           = 0
 default['php']['apc']['num_files_hint']         = 4096
+default['php']['apc']['user_entries_hint']      = 4096
 default['php']['apc']['ttl']                    = 3600
 default['php']['apc']['user_ttl']               = 3600
 default['php']['apc']['gc_ttl']                 = 1800
@@ -20,6 +21,6 @@ default['php']['apc']['report_autofilter']      = 0
 default['php']['apc']['include_once_override']  = 0
 default['php']['apc']['localcache']             = 0
 default['php']['apc']['localcache.size']        = 2048
-default['php']['apc']['user_entries_hint']      = 4096
+default['php']['apc']['coredump_unmap']         = 0
 default['php']['apc']['stat_ctime']             = 0
 default['php']['apc']['canonicalize']           = 1

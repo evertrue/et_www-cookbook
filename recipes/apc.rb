@@ -10,9 +10,7 @@
 include_recipe 'php'
 
 # Install APC for local opscode caching
-package 'php-apc' do
-  action :install
-end
+package 'php-apc'
 
 # Configure APC
 template "#{node['php']['ext_conf_dir']}/apc.ini" do
