@@ -28,6 +28,8 @@ set['apache']['default_modules'] = %w(
   deflate
   expires
   headers
+  log_config
+  logio
   php5
 )
 
