@@ -90,3 +90,37 @@ describe 'APC' do
     end
   end
 end
+
+describe 'Server Monitoring' do
+  %w(
+    newrelic/nrsysmond.cfg
+    php5/conf.d/newrelic.ini
+  ).each do |path|
+    describe file "/etc/#{path}" do
+      describe '#content' do
+        subject { super().content }
+        it { is_expected.to include 'TESTKEY_PHP_AGENT' }
+      end
+    end
+  end
+
+  describe file '/etc/newrelic/newrelic-plugin-agent.cfg' do
+    describe '#content' do
+      subject { super().content }
+      # TODO: This does not work b/c of some bizarre attribute precedence
+      it { is_expected.to include 'TESTKEY_PLUGIN_AGENT' }
+      it { is_expected.to include 'apache_httpd' }
+      it { is_expected.to include 'php_apc' }
+    end
+  end
+
+  describe service 'newrelic-sysmond' do
+    it { is_expected.to_not be_running }
+    it { is_expected.to be_enabled }
+  end
+
+  describe service 'newrelic-plugin-agent' do
+    it { is_expected.to_not be_running }
+    it { is_expected.to be_enabled }
+  end
+end

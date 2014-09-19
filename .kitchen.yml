@@ -17,3 +17,15 @@ suites:
   - name: default
     run_list:
       - recipe[et_www::default]
+    attributes:
+      newrelic:
+        license: TESTKEY_PHP_AGENT
+        server_monitor_agent:
+          service_notify_action: nothing
+          service_actions:
+            - enable
+      newrelic_meetme_plugin:
+        license: TESTKEY_PLUGIN_AGENT
+        service_notify_action: nothing
+        service_actions:
+          - enable
