@@ -1,6 +1,17 @@
 et_www cookbook
 ===============
 
+v2.0.0 (2014-09-19)
+------------------
+
+* Replace newrelic-ng cookbook with newrelic & newrelic_meetme_plugin
+* Remove S3FS
+* Update Gems
+* Add Rakefile with lots of goodies
+* Set up Test Kitchen
+* Add ServerSpec tests
+* Clean up APC attributes & DRY up `et_www::apc` recipe
+
 1.3.0
 -----
 
