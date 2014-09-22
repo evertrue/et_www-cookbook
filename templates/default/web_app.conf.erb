@@ -232,6 +232,6 @@
     RewriteRule ^/ping?$ /ping.txt [L]
 
     # WordPress uploads redirect
-    RewriteRule ^/blog/wp-content/uploads/(.*) /site/wp-content/uploads/$1 [R=301,NC,L]
+    RewriteRule ^/blog/wp-content/uploads/(.*) /wp-content/uploads/$1 [R=301,NC,L]
   </IfModule>
 </VirtualHost>
