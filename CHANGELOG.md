@@ -12,6 +12,13 @@ v2.0.0 (2014-09-19)
 * Add ServerSpec tests
 * Clean up APC attributes & DRY up `et_www::apc` recipe
 
+v1.4.0 (2014-09-22)
+-------------------
+
+* Adjust Apache configs to allow for control via application-generated `.htaccess` files
+* Remove deprecated Apache directives
+* Adjust RewriteRules as needed for changes to URL structure
+
 1.3.0
 -----
 
