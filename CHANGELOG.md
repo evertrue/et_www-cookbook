@@ -1,6 +1,13 @@
 et_www cookbook
 ===============
 
+v1.4.0 (2014-09-22)
+-------------------
+
+* Adjust Apache configs to allow for control via application-generated `.htaccess` files
+* Remove deprecated Apache directives
+* Adjust RewriteRules as needed for changes to URL structure
+
 1.3.0
 -----
 
