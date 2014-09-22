@@ -45,4 +45,5 @@ web_app 'evertrue_com' do
   server_name node['apache']['server_name']
   server_aliases node['apache']['server_aliases']
   docroot node['apache']['docroot']
+  allow_override %w(All)
 end

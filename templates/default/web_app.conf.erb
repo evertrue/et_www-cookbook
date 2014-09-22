@@ -225,10 +225,6 @@
     # Redirect (301) to Web/Console landing page, preserving params
     RewriteRule ^/alumni/([^/]+)(/?)((ios|android))?/?$  https://web.evertrue.com/network/$1$2$3  [R=301,L]
 
-    # Onboarding cleanup/simplification (see github.com/evertrue/www/pull/39)
-    RewriteRule ^/onboarding/premium(/)?((design|kickoff|index)\.html)?$  /onboarding/ [R=301,NC,L]
-    RewriteRule ^/onboarding/(design|kickoff)\.html$                      /onboarding/ [R=301,NC,L]
-
     # Redirect to HubSpot landing page for Data Monster
     RewriteRule ^/datamonster http://get.evertrue.com/data-monster [R=301,NC,L]
 
@@ -238,57 +234,4 @@
     # WordPress uploads redirect
     RewriteRule ^/blog/wp-content/uploads/(.*) /site/wp-content/uploads/$1 [R=301,NC,L]
   </IfModule>
-
-  # BEGIN W3TC Browser Cache
-  <FilesMatch "\.(css|htc|less|js|js2|js3|js4|CSS|HTC|LESS|JS|JS2|JS3|JS4)$">
-    <IfModule mod_headers.c>
-      Header unset Set-Cookie
-      Header unset Last-Modified
-      Header set X-Powered-By "W3 Total Cache/0.9.4"
-    </IfModule>
-  </FilesMatch>
-  <FilesMatch "\.(html|htm|rtf|rtx|svg|svgz|txt|xsd|xsl|xml|HTML|HTM|RTF|RTX|SVG|SVGZ|TXT|XSD|XSL|XML)$">
-    <IfModule mod_headers.c>
-      Header unset Last-Modified
-      Header set X-Powered-By "W3 Total Cache/0.9.4"
-    </IfModule>
-  </FilesMatch>
-  <FilesMatch "\.(asf|asx|wax|wmv|wmx|avi|bmp|class|divx|doc|docx|eot|exe|gif|gz|gzip|ico|jpg|jpeg|jpe|json|mdb|mid|midi|mov|qt|mp3|m4a|mp4|m4v|mpeg|mpg|mpe|mpp|otf|odb|odc|odf|odg|odp|ods|odt|ogg|pdf|png|pot|pps|ppt|pptx|ra|ram|svg|svgz|swf|tar|tif|tiff|ttf|ttc|wav|wma|wri|woff|xla|xls|xlsx|xlt|xlw|zip|ASF|ASX|WAX|WMV|WMX|AVI|BMP|CLASS|DIVX|DOC|DOCX|EOT|EXE|GIF|GZ|GZIP|ICO|JPG|JPEG|JPE|JSON|MDB|MID|MIDI|MOV|QT|MP3|M4A|MP4|M4V|MPEG|MPG|MPE|MPP|OTF|ODB|ODC|ODF|ODG|ODP|ODS|ODT|OGG|PDF|PNG|POT|PPS|PPT|PPTX|RA|RAM|SVG|SVGZ|SWF|TAR|TIF|TIFF|TTF|TTC|WAV|WMA|WRI|WOFF|XLA|XLS|XLSX|XLT|XLW|ZIP)$">
-    <IfModule mod_headers.c>
-      Header unset Set-Cookie
-      Header unset Last-Modified
-      Header set X-Powered-By "W3 Total Cache/0.9.4"
-    </IfModule>
-  </FilesMatch>
-  # END W3TC Browser Cache
-
-  # BEGIN W3TC Skip 404 error handling by WordPress for static files
-  <IfModule mod_rewrite.c>
-    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-f
-    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} !(robots\.txt|[a-z0-9_\-]*sitemap[a-z0-9_\-]*\.(xml|xsl|html)(\.gz)?)
-    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} \.(css|htc|less|js|js2|js3|js4|html|htm|rtf|rtx|svg|svgz|txt|xsd|xsl|xml|asf|asx|wax|wmv|wmx|avi|bmp|class|divx|doc|docx|eot|exe|gif|gz|gzip|ico|jpg|jpeg|jpe|json|mdb|mid|midi|mov|qt|mp3|m4a|mp4|m4v|mpeg|mpg|mpe|mpp|otf|odb|odc|odf|odg|odp|ods|odt|ogg|pdf|png|pot|pps|ppt|pptx|ra|ram|svg|svgz|swf|tar|tif|tiff|ttf|ttc|wav|wma|wri|woff|xla|xls|xlsx|xlt|xlw|zip)$ [NC]
-    RewriteRule .* - [L]
-  </IfModule>
-  # END W3TC Skip 404 error handling by WordPress for static files
-
-  # BEGIN W3TC CDN
-  <FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css)$">
-    <IfModule mod_headers.c>
-      Header set Access-Control-Allow-Origin "*"
-    </IfModule>
-  </FilesMatch>
-  # END W3TC CDN
-
-  # BEGIN WordPress
-  <IfModule mod_rewrite.c>
-    RewriteRule ^/index\.php$ - [L]
-
-    RewriteCond %{REQUEST_URI} !=/server-status
-    RewriteCond %{REQUEST_URI} !=/apc-nrp.php
-    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-f
-    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-d
-    RewriteRule . /index.php [L]
-  </IfModule>
-  # END WordPress
 </VirtualHost>
