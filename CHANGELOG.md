@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v2.2.0 (2014-09-23)
+-------------------
+
+* Remove filename-based cachebusting from H5BP Apache config in favor of including at application level via `.htaccess`
+
 v2.1.0 (2014-09-22)
 -------------------
 
