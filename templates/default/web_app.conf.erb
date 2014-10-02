@@ -28,9 +28,9 @@
   </Location>
 
   # Allow access to APC stats for New Relic locally only
-  Alias /apc-nrp.php /opt/newrelic_plugin_agent/apc-nrp.php
+  Alias /apc-nrp.php /opt/newrelic-plugin-agent/apc-nrp.php
 
-  <Directory "/opt/newrelic_plugin_agent">
+  <Directory "/opt/newrelic-plugin-agent">
     Order deny,allow
     Deny from all
     Allow from <%= node['apache']['status_allow_list'] %>
