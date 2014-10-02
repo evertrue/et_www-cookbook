@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v2.3.1 (2014-10-02)
+-------------------
+
+* Fix New Relic plugin agent name/path for APC monitoring
+
 v2.3.0 (2014-09-30)
 -------------------
 
