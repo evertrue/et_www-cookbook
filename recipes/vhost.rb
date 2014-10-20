@@ -11,10 +11,15 @@ apache_module 'php5' do
   filename 'libphp5.so'
 end
 
-# Install PHP's MySQL & cURL modules
+# Install Debian/Ubuntu packages for PHP necessary for WP
 %w(
   php5-mysql
   php5-curl
+  php5-gd
+  php5-imap
+  php5-mcrypt
+  php5-pspell
+  php5-xmlrpc
 ).each do |pkg|
   package pkg
 end
