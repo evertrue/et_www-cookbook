@@ -1,6 +1,14 @@
 et_www cookbook
 ===============
 
+v2.4.0 (2014-10-20)
+-------------------
+
+* Add missing Ubuntu packages to be installed for WP to be fully functional
+* Update H5BP Apache rules
+    - See h5bp/html5-boilerplate@d7976c3f75a88c054dd75af88e78d7ba55e08119
+* Update New Relic cookbooks to latest releases
+
 v2.3.1 (2014-10-02)
 -------------------
 
