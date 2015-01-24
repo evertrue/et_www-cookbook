@@ -1,6 +1,12 @@
 et_www cookbook
 ===============
 
+v2.5.0 (2015-01-23)
+-------------------
+
+* Add `mod_rpaf` to better handle identifying visitors via the ELB
+* Hacky blacklisting of bad actor
+
 v2.4.0 (2014-10-20)
 -------------------
 
