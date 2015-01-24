@@ -16,6 +16,7 @@
     AllowOverride <%= [@params[:allow_override] || "None" ].flatten.join " " %>
     Order allow,deny
     Allow from all
+    Deny from 46.22.122.167
   </Directory>
 
   # Allow access to server status locally only
