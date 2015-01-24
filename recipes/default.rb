@@ -14,6 +14,11 @@ end
 
 include_recipe 'apache2'
 include_recipe 'apache2::mod_php5'
+
+package 'libapache2-mod-rpaf'
+
+file "#{node['apache']['dir']}mods-enabled/rpaf.conf"
+
 include_recipe 'et_users::evertrue'
 include_recipe 'git'
 include_recipe 'et_www::vhost'
