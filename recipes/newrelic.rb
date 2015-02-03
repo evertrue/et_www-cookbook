@@ -7,6 +7,12 @@
 # All rights reserved - Do Not Redistribute
 #
 
+unless node['et_www']['mock']
+  nr_license = data_bag_item('secrets', 'api_keys')['newrelic']
+  node.set['newrelic']['license'] = nr_license
+  node.set['newrelic_meetme_plugin']['license'] = nr_license
+end
+
 # Install the New Relic repository, system monitor, & PHP Agent
 include_recipe 'newrelic'
 include_recipe 'newrelic::php_agent'

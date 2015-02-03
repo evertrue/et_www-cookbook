@@ -18,6 +18,8 @@ suites:
     run_list:
       - recipe[et_www::default]
     attributes:
+      et_www:
+        mock: true
       newrelic:
         license: TESTKEY_PHP_AGENT
         server_monitor_agent:
