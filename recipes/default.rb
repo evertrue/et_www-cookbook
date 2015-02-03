@@ -17,7 +17,9 @@ include_recipe 'apache2::mod_php5'
 
 package 'libapache2-mod-rpaf'
 
-file "#{node['apache']['dir']}mods-enabled/rpaf.conf"
+cookbook_file "#{node['apache']['dir']}/mods-available/rpaf.conf"
+
+apache_module 'rpaf'
 
 include_recipe 'et_users::evertrue'
 include_recipe 'git'
