@@ -17,6 +17,7 @@ describe 'Web Server' do
   %w(
     php5-mysql
     php5-curl
+    libapache2-mod-rpaf
   ).each do |pkg|
     describe package pkg do
       it { is_expected.to be_installed }
@@ -28,6 +29,23 @@ describe 'Web Server' do
     describe '#content' do
       subject { super().content }
       it { is_expected.to include 'h5bp rules begin' }
+    end
+  end
+
+  describe file '/etc/apache2/mods-enabled/rpaf.conf' do
+    it { is_expected.to be_file }
+    describe '#content' do
+      subject { super().content }
+      it do
+        is_expected.to include(
+          "<IfModule rpaf_module>\n" \
+          "RPAFenable On\n" \
+          "RPAFsethostname On\n" \
+          "RPAFproxy_ips 127.0.0.1 ::1 10.29.245.51 10.67.138.74\n" \
+          "RPAFheader X-Forwarded-For\n" \
+          '</IfModule>'
+        )
+      end
     end
   end
 end
