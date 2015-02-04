@@ -1,6 +1,14 @@
 et_www cookbook
 ===============
 
+v2.5.1 (2015-02-03)
+-------------------
+
+* Fix installation of `mod_rpaf` to be less janky
+* Fix installation of `mod_rpaf` to use supplied config
+* Add tests for `mod_rpaf` install/config
+* Better handling of New Relic attributes for testing
+
 v2.5.0 (2015-01-23)
 -------------------
 
