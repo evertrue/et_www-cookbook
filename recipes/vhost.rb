@@ -30,11 +30,15 @@ group 'deploy' do
   append true
 end
 
-directory '/var/www/www.evertrue.com' do
-  owner 'deploy'
-  group 'www-data'
-  mode 02775
-  action :create
+%w(
+  stage-www
+  www
+).each do |subdomain|
+  directory "/var/www/#{subdomain}.evertrue.com" do
+    owner 'deploy'
+    group 'www-data'
+    mode 02775
+  end
 end
 
 # Install some excellent Apache config rules, courtesy of h5bp.com
@@ -50,5 +54,12 @@ web_app 'evertrue_com' do
   server_name node['apache']['server_name']
   server_aliases node['apache']['server_aliases']
   docroot node['apache']['docroot']
+  allow_override %w(All)
+end
+
+web_app 'stage_evertrue_com' do
+  server_name 'stage-www.evertrue.com'
+  server_aliases []
+  docroot '/var/www/stage-www.evertrue.com/current/htdocs'
   allow_override %w(All)
 end

@@ -50,16 +50,21 @@ describe 'Web Server' do
   end
 end
 
-describe 'Website Virtual Host' do
+describe 'Website Virtual Hosts' do
   describe user 'www-data' do
     it { is_expected.to belong_to_group 'deploy' }
   end
 
-  describe file '/var/www/www.evertrue.com' do
-    it { is_expected.to be_directory }
-    it { is_expected.to be_owned_by 'deploy' }
-    it { is_expected.to be_grouped_into 'www-data' }
-    it { is_expected.to be_mode '2775' }
+  %w(
+    stage-www
+    www
+  ).each do |subdomain|
+    describe file "/var/www/#{subdomain}.evertrue.com" do
+      it { is_expected.to be_directory }
+      it { is_expected.to be_owned_by 'deploy' }
+      it { is_expected.to be_grouped_into 'www-data' }
+      it { is_expected.to be_mode '2775' }
+    end
   end
 
   describe file '/etc/apache2/sites-enabled/evertrue_com.conf' do
@@ -67,6 +72,14 @@ describe 'Website Virtual Host' do
       subject { super().content }
       it { is_expected.to include 'ServerName www.evertrue.com' }
       it { is_expected.to match(%r{<Directory /var/www/www\.evertrue\.com/current/htdocs>\s+?Options \+FollowSymLinks\s+?AllowOverride All}) }
+    end
+  end
+
+  describe file '/etc/apache2/sites-enabled/stage_evertrue_com.conf' do
+    describe '#content' do
+      subject { super().content }
+      it { is_expected.to include 'ServerName stage-www.evertrue.com' }
+      it { is_expected.to match(%r{<Directory /var/www/stage-www\.evertrue\.com/current/htdocs>\s+?Options \+FollowSymLinks\s+?AllowOverride All}) }
     end
   end
 end
