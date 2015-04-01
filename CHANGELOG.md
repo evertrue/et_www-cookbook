@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v2.6.0 (2015-04-01)
+-------------------
+
+* Add `stage-www.evertrue.com` as a separate vhost, instead of as an alias that can be used on a separately provisioned EC2 instance
+
 v2.5.1 (2015-02-03)
 -------------------
 
