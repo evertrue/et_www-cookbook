@@ -131,7 +131,7 @@ describe 'Server Monitoring' do
     describe file "/etc/#{path}" do
       describe '#content' do
         subject { super().content }
-        it { is_expected.to include 'TESTKEY_PHP_AGENT' }
+        it { is_expected.to include 'TESTKEY_NEWRELIC' }
       end
     end
   end
@@ -139,8 +139,7 @@ describe 'Server Monitoring' do
   describe file '/etc/newrelic/newrelic-plugin-agent.cfg' do
     describe '#content' do
       subject { super().content }
-      # TODO: This does not work b/c of some bizarre attribute precedence
-      it { is_expected.to include 'TESTKEY_PLUGIN_AGENT' }
+      it { is_expected.to include 'TESTKEY_NEWRELIC' }
       it { is_expected.to include 'apache_httpd' }
       it { is_expected.to include 'php_apc' }
     end
