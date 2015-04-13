@@ -24,7 +24,7 @@ end
   package pkg
 end
 
-group 'deploy' do
+group node['et_www']['group'] do
   members 'www-data'
   action :modify
   append true

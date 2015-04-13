@@ -36,3 +36,6 @@ set['apache']['default_modules'] = %w(
 set['apache']['status_allow_list'] = '127.0.0.1 localhost ip6-localhost'
 # Set ExtendedStatus to true to supply MeetMe New Relic plugin w/ metrics
 set['apache']['ext_status'] = true
+
+set['et_www']['user'] = 'deploy'
+set['et_www']['group'] = 'deploy'

@@ -1,9 +1,0 @@
-{
-  "id": "deploy",
-  "ssh_keys": [
-  ],
-  "groups": [ "evertrue" ],
-  "uid": 1011,
-  "shell": "\/bin\/bash",
-  "comment": "Deploy worker, set up by Chef"
-}

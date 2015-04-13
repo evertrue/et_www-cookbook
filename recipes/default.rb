@@ -21,7 +21,13 @@ cookbook_file "#{node['apache']['dir']}/mods-available/rpaf.conf"
 
 apache_module 'rpaf'
 
-include_recipe 'et_users::evertrue'
+user node['et_www']['user'] do
+  comment 'Deploy worker, set up by Chef'
+  shell '/bin/bash'
+  home "/home/#{node['et_www']['user']}"
+  supports manage_home: true
+end
+
 include_recipe 'git'
 include_recipe 'et_www::vhost'
 include_recipe 'et_www::apc'
