@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v2.8.0 (2015-04-14)
+-------------------
+
+* Add .env file for WordPress config data
+
 v2.7.0 (2015-04-14)
 -------------------
 

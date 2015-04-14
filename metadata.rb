@@ -4,7 +4,7 @@ maintainer_email 'devops@evertrue.com'
 license          'All rights reserved'
 description      'Installs/Configures et_www'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '2.7.0'
+version          '2.8.0'
 
 depends 'apt'
 depends 'apache2', '~> 1.6'
