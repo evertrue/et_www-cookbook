@@ -24,6 +24,12 @@ end
   package pkg
 end
 
+# Install WP-CLI
+remote_file '/usr/local/bin/wp' do
+  mode '0755'
+  source 'https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar'
+end
+
 group node['et_www']['group'] do
   members 'www-data'
   action :modify

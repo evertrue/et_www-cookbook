@@ -155,3 +155,16 @@ describe 'Server Monitoring' do
     it { is_expected.to be_enabled }
   end
 end
+
+describe 'WP-CLI' do
+  describe file '/usr/local/bin/wp' do
+    it { is_expected.to be_file }
+    it { is_expected.to be_mode '755' }
+  end
+
+  describe command 'sudo -u deploy -i -- wp --info' do
+    its(:exit_status) { is_expected.to eq 0 }
+    its(:stdout) { is_expected.to match /PHP version:\s+5.3/ }
+    its(:stdout) { is_expected.to match /WP-CLI version:\s+0.18.0/ }
+  end
+end
