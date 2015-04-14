@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v2.7.0 (2015-04-14)
+-------------------
+
+* Add [WP-CLI](http://wp-cli.org) to provide for [capistrano-wpcli](https://github.com/lavmeiker/capistrano-wpcli)
+
 v2.6.0 (2015-04-01)
 -------------------
 
