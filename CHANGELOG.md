@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v2.9.0 (2015-04-14)
+-------------------
+
+* Add installation of [Composer](https://getcomposer.org)
+
 v2.8.0 (2015-04-14)
 -------------------
 
