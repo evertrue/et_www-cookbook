@@ -40,13 +40,36 @@ end
   stage-www
   www
 ).each do |subdomain|
-  directory "/var/www/#{subdomain}.evertrue.com" do
-    owner node['et_www']['user']
-    group node['apache']['group']
-    mode 02775
+  site_dir = "/var/www/#{subdomain}.evertrue.com"
+  [site_dir, "#{site_dir}/shared"].each do |dir|
+    directory dir do
+      owner node['et_www']['user']
+      group node['apache']['group']
+      mode 02775
+    end
+  end
+
+  if subdomain == 'stage-www'
+    wp_env = 'staging'
+    db = 'stage-etwp'
+  else
+    wp_env = 'production'
+    db = 'etwp'
+  end
+
+  db_creds = data_bag_item('secrets', 'database_credentials')[node.chef_environment][db]
+
+  template "#{site_dir}/shared/.env" do
+    variables(
+      db_name: db,
+      db_user: db_creds['username'],
+      db_pass: db_creds['password'],
+      db_host: 'www.cg0lvth7azzh.us-east-1.rds.amazonaws.com',
+      wp_env: wp_env,
+      subdomain: subdomain
+    )
   end
 end
-
 # Install some excellent Apache config rules, courtesy of h5bp.com
 cookbook_file "#{node['apache']['dir']}/conf.d/h5bp.conf" do
   source 'h5bp.conf'

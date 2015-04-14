@@ -59,11 +59,36 @@ describe 'Website Virtual Hosts' do
     stage-www
     www
   ).each do |subdomain|
-    describe file "/var/www/#{subdomain}.evertrue.com" do
-      it { is_expected.to be_directory }
-      it { is_expected.to be_owned_by 'deploy' }
-      it { is_expected.to be_grouped_into 'www-data' }
-      it { is_expected.to be_mode '2775' }
+    site_dir = "/var/www/#{subdomain}.evertrue.com"
+    [site_dir, "#{site_dir}/shared"].each do |dir|
+      describe file dir do
+        it { is_expected.to be_directory }
+        it { is_expected.to be_owned_by 'deploy' }
+        it { is_expected.to be_grouped_into 'www-data' }
+        it { is_expected.to be_mode '2775' }
+      end
+    end
+
+    if subdomain == 'stage-www'
+      wp_env = 'staging'
+      db = 'stage-etwp'
+    else
+      wp_env = 'production'
+      db = 'etwp'
+    end
+
+    describe file "#{site_dir}/shared/.env" do
+      it { is_expected.to be_file }
+      describe '#content' do
+        subject { super().content }
+        it { is_expected.to include "DB_NAME=#{db}" }
+        it { is_expected.to include 'DB_USER=etwpadmin' }
+        it { is_expected.to include 'DB_PASSWORD=@@TESTING_PASS@@' }
+        it { is_expected.to include 'DB_HOST=www.cg0lvth7azzh.us-east-1.rds.amazonaws.com' }
+        it { is_expected.to include "WP_ENV=#{wp_env}" }
+        it { is_expected.to include "WP_HOME=http://#{subdomain}.evertrue.com" }
+        it { is_expected.to include "WP_SITEURL=http://#{subdomain}.evertrue.com/wp" }
+      end
     end
   end
 
