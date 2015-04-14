@@ -7,7 +7,7 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '2.9.0'
 
 depends 'apt'
-depends 'apache2', '~> 1.6'
+depends 'apache2', '~> 3.0'
 depends 'php',     '~> 1.4'
 depends 'git'
 depends 'newrelic',               '~> 2.2'

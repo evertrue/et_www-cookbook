@@ -14,12 +14,15 @@ end
 
 include_recipe 'apache2'
 include_recipe 'apache2::mod_php5'
+include_recipe 'git'
+include_recipe 'php'
 
 package 'libapache2-mod-rpaf'
 
-cookbook_file "#{node['apache']['dir']}/mods-available/rpaf.conf"
+apache_mod 'rpaf'
 
-apache_module 'rpaf'
+# Install some excellent Apache config rules, courtesy of h5bp.com
+apache_conf 'h5bp'
 
 user node['et_www']['user'] do
   comment 'Deploy worker, set up by Chef'
@@ -28,8 +31,6 @@ user node['et_www']['user'] do
   supports manage_home: true
 end
 
-include_recipe 'git'
 include_recipe 'et_www::vhost'
-include_recipe 'et_www::apc'
 include_recipe 'et_www::newrelic'
 include_recipe 'composer'

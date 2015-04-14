@@ -24,7 +24,7 @@ describe 'Web Server' do
     end
   end
 
-  describe file '/etc/apache2/conf.d/h5bp.conf' do
+  describe file '/etc/apache2/conf-enabled/h5bp.conf' do
     it { is_expected.to be_file }
     describe '#content' do
       subject { super().content }
@@ -109,58 +109,7 @@ describe 'Website Virtual Hosts' do
   end
 end
 
-describe 'APC' do
-  describe package 'php-apc' do
-    it { is_expected.to be_installed }
-  end
-
-  describe file '/etc/php5/conf.d/apc.ini' do
-    it { is_expected.to be_file }
-
-    describe '#content' do
-      subject { super().content }
-      it { is_expected.to include 'apc.enabled = 1' }
-      it { is_expected.to include 'apc.shm_segments = 1' }
-      it { is_expected.to include 'apc.shm_size = 192M' }
-      it { is_expected.to include 'apc.optimization = 0' }
-      it { is_expected.to include 'apc.num_files_hint = 4096' }
-      it { is_expected.to include 'apc.user_entries_hint = 4096' }
-      it { is_expected.to include 'apc.ttl = 3600' }
-      it { is_expected.to include 'apc.user_ttl = 3600' }
-      it { is_expected.to include 'apc.gc_ttl = 1800' }
-      it { is_expected.to include 'apc.cache_by_default = 1' }
-      it { is_expected.to include "apc.filters = \n" }
-      it { is_expected.to include 'apc.mmap_file_mask = /apc.shm.XXXXXX' }
-      it { is_expected.to include 'apc.slam_defense = 0' }
-      it { is_expected.to include 'apc.file_update_protection = 2' }
-      it { is_expected.to include 'apc.enable_cli = 0' }
-      it { is_expected.to include 'apc.max_file_size = 2M' }
-      it { is_expected.to include 'apc.stat = 1' }
-      it { is_expected.to include 'apc.write_lock = 1' }
-      it { is_expected.to include 'apc.report_autofilter = 0' }
-      it { is_expected.to include 'apc.include_once_override = 0' }
-      it { is_expected.to include 'apc.localcache = 0' }
-      it { is_expected.to include 'apc.localcache.size = 2048' }
-      it { is_expected.to include 'apc.coredump_unmap = 0' }
-      it { is_expected.to include 'apc.stat_ctime = 0' }
-      it { is_expected.to include 'apc.canonicalize = 1' }
-    end
-  end
-end
-
 describe 'Server Monitoring' do
-  %w(
-    newrelic/nrsysmond.cfg
-    php5/conf.d/newrelic.ini
-  ).each do |path|
-    describe file "/etc/#{path}" do
-      describe '#content' do
-        subject { super().content }
-        it { is_expected.to include 'TESTKEY_NEWRELIC' }
-      end
-    end
-  end
-
   describe file '/etc/newrelic/newrelic-plugin-agent.cfg' do
     describe '#content' do
       subject { super().content }
@@ -168,11 +117,6 @@ describe 'Server Monitoring' do
       it { is_expected.to include 'apache_httpd' }
       it { is_expected.to include 'php_apc' }
     end
-  end
-
-  describe service 'newrelic-sysmond' do
-    it { is_expected.to_not be_running }
-    it { is_expected.to be_enabled }
   end
 
   describe service 'newrelic-plugin-agent' do
@@ -189,7 +133,7 @@ describe 'WP-CLI' do
 
   describe command 'sudo -u deploy -i -- wp --info' do
     its(:exit_status) { is_expected.to eq 0 }
-    its(:stdout) { is_expected.to match /PHP version:\s+5.3/ }
+    its(:stdout) { is_expected.to match /PHP version:\s+5.5/ }
     its(:stdout) { is_expected.to match /WP-CLI version:\s+0.18.0/ }
   end
 end

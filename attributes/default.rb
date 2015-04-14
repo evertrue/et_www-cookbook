@@ -1,3 +1,4 @@
+set['apache']['mpm'] = 'prefork'
 set['apache']['listen_ports'] = ['80']
 set['apache']['contact'] = 'devops@evertrue.com'
 set['apache']['docroot'] = '/var/www/www.evertrue.com/current/htdocs'
@@ -32,8 +33,6 @@ set['apache']['default_modules'] = %w(
   php5
 )
 
-# mod_status Allow list, space separated list of allowed entries
-set['apache']['status_allow_list'] = '127.0.0.1 localhost ip6-localhost'
 # Set ExtendedStatus to true to supply MeetMe New Relic plugin w/ metrics
 set['apache']['ext_status'] = true
 

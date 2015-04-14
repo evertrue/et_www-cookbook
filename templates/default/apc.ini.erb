@@ -1,7 +1,0 @@
-; /etc/php.d/apc.ini
-
-extension = apc.so
-
-<%- @node['php']['apc'].map do |key, value| -%>
-apc.<%= key %> = <%= value %>
-<% end -%>
