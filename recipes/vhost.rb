@@ -31,7 +31,7 @@ remote_file '/usr/local/bin/wp' do
 end
 
 group node['et_www']['group'] do
-  members 'www-data'
+  members node['apache']['group']
   action :modify
   append true
 end
@@ -41,8 +41,8 @@ end
   www
 ).each do |subdomain|
   directory "/var/www/#{subdomain}.evertrue.com" do
-    owner 'deploy'
-    group 'www-data'
+    owner node['et_www']['user']
+    group node['apache']['group']
     mode 02775
   end
 end
