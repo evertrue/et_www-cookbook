@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v3.0.1 (2015-04-15)
+-------------------
+
+* Fix DocumentRoot to reflect new WWW deployment
+
 v3.0.0 (2015-04-14)
 -------------------
 
