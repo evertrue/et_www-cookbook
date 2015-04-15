@@ -85,6 +85,7 @@ describe 'Website Virtual Hosts' do
         it { is_expected.to include 'DB_USER=etwpadmin' }
         it { is_expected.to include 'DB_PASSWORD=@@TESTING_PASS@@' }
         it { is_expected.to include 'DB_HOST=www.cg0lvth7azzh.us-east-1.rds.amazonaws.com' }
+        it { is_expected.to include 'DB_PREFIX=et20150409' }
         it { is_expected.to include "WP_ENV=#{wp_env}" }
         it { is_expected.to include "WP_HOME=http://#{subdomain}.evertrue.com" }
         it { is_expected.to include "WP_SITEURL=http://#{subdomain}.evertrue.com/wp" }

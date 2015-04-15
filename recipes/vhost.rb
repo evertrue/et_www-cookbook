@@ -65,6 +65,7 @@ end
       db_user: db_creds['username'],
       db_pass: db_creds['password'],
       db_host: 'www.cg0lvth7azzh.us-east-1.rds.amazonaws.com',
+      db_prefix: 'et20150409',
       wp_env: wp_env,
       subdomain: subdomain
     )
