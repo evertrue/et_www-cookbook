@@ -96,7 +96,7 @@ describe 'Website Virtual Hosts' do
     describe '#content' do
       subject { super().content }
       it { is_expected.to include 'ServerName www.evertrue.com' }
-      it { is_expected.to match(%r{<Directory /var/www/www\.evertrue\.com/current/htdocs>\s+?Options \+FollowSymLinks\s+?AllowOverride All}) }
+      it { is_expected.to match(%r{<Directory /var/www/www\.evertrue\.com/current/web>\s+?Options \+FollowSymLinks\s+?AllowOverride All}) }
     end
   end
 
@@ -104,7 +104,7 @@ describe 'Website Virtual Hosts' do
     describe '#content' do
       subject { super().content }
       it { is_expected.to include 'ServerName stage-www.evertrue.com' }
-      it { is_expected.to match(%r{<Directory /var/www/stage-www\.evertrue\.com/current/htdocs>\s+?Options \+FollowSymLinks\s+?AllowOverride All}) }
+      it { is_expected.to match(%r{<Directory /var/www/stage-www\.evertrue\.com/current/web>\s+?Options \+FollowSymLinks\s+?AllowOverride All}) }
     end
   end
 end

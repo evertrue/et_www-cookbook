@@ -81,6 +81,6 @@ end
 web_app 'stage_evertrue_com' do
   server_name 'stage-www.evertrue.com'
   server_aliases []
-  docroot '/var/www/stage-www.evertrue.com/current/htdocs'
+  docroot '/var/www/stage-www.evertrue.com/current/web'
   allow_override %w(All)
 end
