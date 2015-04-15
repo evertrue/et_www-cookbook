@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v3.0.3 (2015-04-15)
+-------------------
+
+* Switch back to allowing app to handle its DB_PREFIX in code
+
 v3.0.2 (2015-04-15)
 -------------------
 
