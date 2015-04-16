@@ -215,7 +215,7 @@
     # http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
 
     RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-f
-    RewriteRule ^/(.+)\.(\d+)\.(bmp|css|cur|gif|ico|jpe?g|js|png|svgz?|webp|webmanifest)$ $1.$3 [L]
+    RewriteRule ^(.+)\.(\d+)\.(bmp|css|cur|gif|ico|jpe?g|js|png|svgz?|webp|webmanifest)$ $1.$3 [L]
 
     # Legacy Pages
     RewriteRule ^/about-evertrue-connect(.*) /          [R=301,L]
