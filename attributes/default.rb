@@ -1,7 +1,7 @@
 set['apache']['mpm'] = 'prefork'
 set['apache']['listen_ports'] = ['80']
 set['apache']['contact'] = 'devops@evertrue.com'
-set['apache']['docroot'] = '/var/www/www.evertrue.com/current/htdocs'
+set['apache']['docroot'] = '/var/www/www.evertrue.com/current/web'
 set['apache']['server_name'] = 'www.evertrue.com'
 set['apache']['server_aliases'] = [
   'evertrue.com',
