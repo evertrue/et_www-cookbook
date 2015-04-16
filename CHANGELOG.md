@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v3.3.0 (2015-04-16)
+-------------------
+
+* Install APCu for better caching w/ W3 Total Cache for WordPress
+
 v3.2.0 (2015-04-16)
 -------------------
 
