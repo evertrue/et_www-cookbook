@@ -60,7 +60,11 @@ describe 'Website Virtual Hosts' do
     www
   ).each do |subdomain|
     site_dir = "/var/www/#{subdomain}.evertrue.com"
-    [site_dir, "#{site_dir}/shared"].each do |dir|
+    [
+      site_dir,
+      "#{site_dir}/shared",
+      "#{site_dir}/shared/web"
+    ].each do |dir|
       describe file dir do
         it { is_expected.to be_directory }
         it { is_expected.to be_owned_by 'deploy' }
@@ -89,6 +93,13 @@ describe 'Website Virtual Hosts' do
         it { is_expected.to include "WP_HOME=http://#{subdomain}.evertrue.com" }
         it { is_expected.to include "WP_SITEURL=http://#{subdomain}.evertrue.com/wp" }
       end
+    end
+
+    describe file "#{site_dir}/shared/web/.htaccess" do
+      it { is_expected.to be_file }
+      it { is_expected.to be_owned_by 'deploy' }
+      it { is_expected.to be_grouped_into 'www-data' }
+      it { is_expected.to be_mode '664' }
     end
   end
 

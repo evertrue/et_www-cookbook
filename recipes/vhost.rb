@@ -41,7 +41,11 @@ end
   www
 ).each do |subdomain|
   site_dir = "/var/www/#{subdomain}.evertrue.com"
-  [site_dir, "#{site_dir}/shared"].each do |dir|
+  [
+    site_dir,
+    "#{site_dir}/shared",
+    "#{site_dir}/shared/web"
+  ].each do |dir|
     directory dir do
       owner node['et_www']['user']
       group node['apache']['group']
@@ -68,6 +72,12 @@ end
       wp_env: wp_env,
       subdomain: subdomain
     )
+  end
+
+  file "#{site_dir}/shared/web/.htaccess" do
+    owner node['et_www']['user']
+    group node['apache']['group']
+    mode '664'
   end
 end
 
