@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v3.2.0 (2015-04-16)
+-------------------
+
+* Update H5BP Apache config goodies to [h5bp/server-configs-apache@2.14.0](https://github.com/h5bp/server-configs-apache/blob/2.14.0/dist/.htaccess)
+
 v3.1.1 (2015-04-16)
 -------------------
 
