@@ -20,6 +20,7 @@ end
   php5-mcrypt
   php5-pspell
   php5-xmlrpc
+  php5-apcu
 ).each do |pkg|
   package pkg
 end
