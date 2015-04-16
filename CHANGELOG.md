@@ -1,6 +1,13 @@
 et_www cookbook
 ===============
 
+v3.1.0 (2015-04-16)
+-------------------
+
+* Add filename-based cachebusting to vhost configs
+* Fix incorrect docroot for prod (for new deployments)
+* Ensure a shared .htaccess file is present
+
 v3.0.3 (2015-04-15)
 -------------------
 
