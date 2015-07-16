@@ -160,6 +160,6 @@ describe 'WP-CLI' do
   describe command 'sudo -u deploy -i -- wp --info' do
     its(:exit_status) { is_expected.to eq 0 }
     its(:stdout) { is_expected.to match(/PHP version:\s+5.5/) }
-    its(:stdout) { is_expected.to match(/WP-CLI version:\s+0.18.0/) }
+    its(:stdout) { is_expected.to match(/WP-CLI version:\s+0.19.2/) }
   end
 end
