@@ -101,6 +101,10 @@ describe 'Website Virtual Hosts' do
       it { is_expected.to be_grouped_into 'www-data' }
       it { is_expected.to be_mode '664' }
     end
+
+    describe file "#{site_dir}/shared/web/app/uploads" do
+      it { is_expected.to be_linked_to "/mnt/dev0/#{subdomain}/uploads" }
+    end
   end
 
   describe file '/etc/apache2/sites-enabled/evertrue_com.conf' do

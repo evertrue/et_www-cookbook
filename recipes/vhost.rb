@@ -45,7 +45,8 @@ end
   [
     site_dir,
     "#{site_dir}/shared",
-    "#{site_dir}/shared/web"
+    "#{site_dir}/shared/web",
+    "#{site_dir}/shared/web/app"
   ].each do |dir|
     directory dir do
       owner node['et_www']['user']
@@ -79,6 +80,19 @@ end
     owner node['et_www']['user']
     group node['apache']['group']
     mode '664'
+  end
+
+  if node['storage']['ephemeral_mounts']
+    directory   "#{node['storage']['ephemeral_mounts'].first}/#{subdomain}/uploads" do
+      owner     node['et_www']['user']
+      group     node['apache']['group']
+      mode      '2775'
+      recursive true
+    end
+
+    link "#{site_dir}/shared/web/app/uploads" do
+      to "#{node['storage']['ephemeral_mounts'].first}/#{subdomain}/uploads"
+    end
   end
 end
 
