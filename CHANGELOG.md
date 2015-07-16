@@ -1,6 +1,13 @@
 et_www cookbook
 ===============
 
+v3.4.0 (2015-07-16)
+-------------------
+
+* Add the New Relic PHP Agent back in to monitor for speed/load issues
+* Move the uploads to a secondary mountpoint, if any
+* Update some Serverspec tests
+
 v3.3.0 (2015-04-16)
 -------------------
 
