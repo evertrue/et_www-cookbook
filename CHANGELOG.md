@@ -1,6 +1,12 @@
 et_www cookbook
 ===============
 
+v3.4.1 (2015-07-16)
+-------------------
+
+* Disable inclusion of New Relic MeetMe Plugin Agent
+    - Troubleshooting step, may be responsible for overload on Apache
+
 v3.4.0 (2015-07-16)
 -------------------
 
