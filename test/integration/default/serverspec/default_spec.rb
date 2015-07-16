@@ -138,6 +138,17 @@ describe 'Server Monitoring' do
     it { is_expected.to_not be_running }
     it { is_expected.to be_enabled }
   end
+
+  context 'PHP Agent' do
+    describe file '/etc/php5/apache2/conf.d/newrelic.ini' do
+      it { is_expected.to be_file }
+      describe '#content' do
+        subject { super().content }
+        it { is_expected.to include 'TESTKEY_NEWRELIC' }
+        it { is_expected.to include 'WWW' }
+      end
+    end
+  end
 end
 
 describe 'WP-CLI' do
