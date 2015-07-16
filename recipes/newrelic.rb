@@ -15,4 +15,4 @@ node.set['newrelic']['license'] = nr_license
 include_recipe 'newrelic::php_agent'
 
 # Install the New Relic MeetMe Plugin Agent
-include_recipe 'newrelic_meetme_plugin'
+# include_recipe 'newrelic_meetme_plugin'
