@@ -12,6 +12,8 @@ set['apache']['server_aliases'] = [
   'admin.evertrue.com'
 ]
 
+set['apache']['wp_admin_ips'] = '50.250.52.105'
+
 # Set Apache modules to enable
 set['apache']['default_modules'] = %w(
   status
