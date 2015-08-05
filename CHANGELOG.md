@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v3.4.2 (2015-07-16)
+-------------------
+
+* Disable outside access to the wp-admin pages
+
 v3.4.1 (2015-07-16)
 -------------------
 
