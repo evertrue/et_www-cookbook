@@ -9,8 +9,5 @@ group :test do
   gem 'foodcritic',   '~> 3.0'
   gem 'rubocop',      '~> 0.23'
   gem 'test-kitchen', '~> 1.2'
-end
-
-group :test, :vagrant do
-  gem 'kitchen-vagrant', '~> 0.15'
+  gem 'kitchen-ec2',  '~> 0.10'
 end
