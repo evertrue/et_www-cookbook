@@ -7,10 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-apache_module 'php5' do
-  filename 'libphp5.so'
-end
-
 # Install Debian/Ubuntu packages for PHP necessary for WP
 %w(
   php5-mysql
