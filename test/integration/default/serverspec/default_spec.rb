@@ -18,6 +18,7 @@ describe 'Web Server' do
     php5-mysql
     php5-curl
     libapache2-mod-rpaf
+    subversion
   ).each do |pkg|
     describe package pkg do
       it { is_expected.to be_installed }

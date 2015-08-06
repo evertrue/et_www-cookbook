@@ -18,6 +18,7 @@ include_recipe 'apache2::mod_php5'
 include_recipe 'git'
 include_recipe 'php'
 
+package 'subversion'
 package 'libapache2-mod-rpaf'
 
 apache_mod 'rpaf'
