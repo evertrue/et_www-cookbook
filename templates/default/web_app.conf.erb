@@ -27,15 +27,11 @@
 
   # Allow access to WordPress on a selective basis
   <LocationMatch "(.*/wp-login\.php|.*/wp-admin/.*)">
-    Order deny,allow
-    Deny from all
-    Allow from <%= node['apache']['wp_admin_ips'] %>
+    Require ip <%= node['apache']['wp_admin_ips'] %>
   </LocationMatch>
 
   <Files admin-ajax.php>
-    Order allow,deny
-    Allow from all
-    Satisfy any
+    Require all granted
   </Files>
 
   # Allow access to APC stats for New Relic locally only
