@@ -16,4 +16,4 @@ set['newrelic_meetme_plugin']['services'] = {
 
 set['newrelic']['application_monitoring']['app_name'] = 'WWW'
 set['newrelic']['php_agent']['web_server']['service_name'] = 'apache2'
-set['newrelic']['php_agent']['config_file'] = '/etc/php5/apache2/conf.d/newrelic.ini'
+set['newrelic']['php_agent']['config_file'] = '/etc/php5/mods-available/newrelic.ini'

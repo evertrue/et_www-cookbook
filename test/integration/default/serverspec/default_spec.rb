@@ -141,7 +141,7 @@ describe 'Server Monitoring' do
   end
 
   context 'PHP Agent' do
-    describe file '/etc/php5/apache2/conf.d/newrelic.ini' do
+    describe file '/etc/php5/mods-available/newrelic.ini' do
       it { is_expected.to be_file }
       describe '#content' do
         subject { super().content }
