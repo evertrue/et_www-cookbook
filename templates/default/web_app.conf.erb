@@ -32,6 +32,12 @@
     Allow from <%= node['apache']['wp_admin_ips'] %>
   </LocationMatch>
 
+  <Files admin-ajax.php>
+    Order allow,deny
+    Allow from all
+    Satisfy any
+  </Files>
+
   # Allow access to APC stats for New Relic locally only
   Alias /apc-nrp.php /opt/newrelic-plugin-agent/apc-nrp.php
 
