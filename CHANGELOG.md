@@ -1,6 +1,14 @@
 et_www cookbook
 ===============
 
+v4.0.0 (2015-08-06)
+-------------------
+
+* Switch to using php-fpm instead of mod_php
+* Switch to the `event` Apache MPM for better concurrency 
+* Fix path to New Relic PHP Agent config
+    - Previously, we were creating a whole separate file, which resulted in having two active configs for the PHP Agent (potentially bad)
+
 v3.4.5 (2015-08-06)
 -------------------
 
