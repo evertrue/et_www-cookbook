@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v3.4.3 (2015-08-06)
+-------------------
+
+* Fix external access to admin-ajax.php for WP plugins that use it
+
 v3.4.2 (2015-08-05)
 -------------------
 
