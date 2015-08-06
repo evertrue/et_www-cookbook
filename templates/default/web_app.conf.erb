@@ -238,10 +238,6 @@
     RewriteRule ^/about-evertrue(.*)         /our-story [R=301,L]
     RewriteRule ^/our-mission(.*)            /our-story [R=301,L]
 
-    # Rewrites for product verify/landing pages
-    # Redirect to standalone auth verify
-    RewriteRule ^/alumni/([^/]+)/verify/(.*)    http://verify.evertrue.com/$1/$2    [R=301,QSA,NC,L]
-
     # Organization Terms
     RewriteCond %{REQUEST_URI} !=/alumni/brown/terms.html
     RewriteRule ^/alumni/(.+?)/terms\.html      /alumni/terms.php?oid=$1            [NC,L]
