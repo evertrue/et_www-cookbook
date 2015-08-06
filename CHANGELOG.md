@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v3.4.4 (2015-08-06)
+-------------------
+
+* Fix Apache syntax for wp-admin access control
+
 v3.4.3 (2015-08-06)
 -------------------
 
