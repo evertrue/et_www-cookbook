@@ -17,6 +17,7 @@ set['apache']['wp_admin_ips'] = '50.250.52.105'
 # Set Apache modules to enable
 set['apache']['default_modules'] = %w(
   status
+  actions
   alias
   auth_basic
   authn_file
@@ -32,7 +33,6 @@ set['apache']['default_modules'] = %w(
   headers
   log_config
   logio
-  php5
 )
 
 # Set ExtendedStatus to true to supply MeetMe New Relic plugin w/ metrics

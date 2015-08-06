@@ -25,6 +25,10 @@ describe 'Web Server' do
     end
   end
 
+  describe file '/etc/apache2/conf-enabled/php-fpm.conf' do
+    it { is_expected.to be_file }
+  end
+
   describe file '/etc/apache2/conf-enabled/h5bp.conf' do
     it { is_expected.to be_file }
     describe '#content' do

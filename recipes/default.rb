@@ -10,18 +10,33 @@
 case node['platform_family']
 when 'debian'
   include_recipe 'apt'
+
+  %w(trusty trusty-updates trusty-security).each do |distro|
+    apt_repository "#{distro}-multiverse" do
+      uri          'http://us-east-1.ec2.archive.ubuntu.com/ubuntu/'
+      distribution distro
+      components   ['multiverse']
+      deb_src      true
+      notifies     :run, 'execute[apt-get update]', :immediately
+    end
+  end
 end
 
 include_recipe 'storage'
 include_recipe 'apache2'
-include_recipe 'apache2::mod_php5'
+include_recipe 'apache2::mod_fastcgi'
 include_recipe 'git'
 include_recipe 'php'
+
+php_fpm_pool 'www'
 
 package 'subversion'
 package 'libapache2-mod-rpaf'
 
 apache_mod 'rpaf'
+
+# Set up PHP-FPM with the FastCGI mod
+apache_conf 'php-fpm'
 
 # Install some excellent Apache config rules, courtesy of h5bp.com
 apache_conf 'h5bp'
