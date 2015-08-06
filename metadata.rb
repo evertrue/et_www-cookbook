@@ -4,7 +4,7 @@ maintainer_email 'devops@evertrue.com'
 license          'All rights reserved'
 description      'Installs/Configures et_www'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '3.4.4'
+version          '3.4.5'
 
 depends 'apt'
 depends 'apache2', '~> 3.0'
