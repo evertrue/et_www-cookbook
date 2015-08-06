@@ -1,4 +1,4 @@
-set['apache']['mpm'] = 'prefork'
+set['apache']['mpm'] = 'event'
 set['apache']['listen_ports'] = ['80']
 set['apache']['contact'] = 'devops@evertrue.com'
 set['apache']['docroot'] = '/var/www/www.evertrue.com/current/web'
