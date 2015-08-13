@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v4.0.2 (2015-08-13)
+-------------------
+
+* Add redirects from blog.evertrue.com and nerds.evertrue.com to various sites
+
 v4.0.1 (2015-08-06)
 -------------------
 
