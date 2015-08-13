@@ -92,16 +92,42 @@ end
   end
 end
 
-web_app 'evertrue_com' do
+web_app '00_evertrue_com' do
   server_name node['apache']['server_name']
   server_aliases node['apache']['server_aliases']
   docroot node['apache']['docroot']
   allow_override %w(All)
 end
 
-web_app 'stage_evertrue_com' do
+web_app '20_stage_evertrue_com' do
   server_name 'stage-www.evertrue.com'
   server_aliases []
   docroot '/var/www/stage-www.evertrue.com/current/web'
   allow_override %w(All)
+end
+
+%w(
+  blog
+  nerds
+).each do |site_name|
+  cookbook_file "/etc/apache2/sites-available/#{site_name}_evertrue_com.conf"
+
+  link "/etc/apache2/sites-enabled/50_#{site_name}_evertrue_com.conf" do
+    to "/etc/apache2/sites-available/#{site_name}_evertrue_com.conf"
+    notifies :reload, 'service[apache2]', :delayed
+  end
+end
+
+%w(
+  evertrue_com
+  stage_evertrue_com
+).each do |conf_file|
+  link "/etc/apache2/sites-enabled/#{conf_file}.conf" do
+    action :delete
+    notifies :reload, 'service[apache2]', :delayed
+  end
+
+  file "/etc/apache2/sites-available/#{conf_file}.conf" do
+    action :delete
+  end
 end
