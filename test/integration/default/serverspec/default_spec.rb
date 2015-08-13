@@ -116,7 +116,7 @@ describe 'Website Virtual Hosts' do
     end
   end
 
-  describe file '/etc/apache2/sites-enabled/evertrue_com.conf' do
+  describe file '/etc/apache2/sites-enabled/00_evertrue_com.conf' do
     describe '#content' do
       subject { super().content }
       it { is_expected.to include 'ServerName www.evertrue.com' }
@@ -124,7 +124,7 @@ describe 'Website Virtual Hosts' do
     end
   end
 
-  describe file '/etc/apache2/sites-enabled/stage_evertrue_com.conf' do
+  describe file '/etc/apache2/sites-enabled/20_stage_evertrue_com.conf' do
     describe '#content' do
       subject { super().content }
       it { is_expected.to include 'ServerName stage-www.evertrue.com' }
