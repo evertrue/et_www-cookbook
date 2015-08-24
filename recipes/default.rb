@@ -30,6 +30,8 @@ include_recipe 'php'
 
 php_fpm_pool 'www'
 
+# Ensure mysqldump is present
+package 'mysql-client-5.6'
 package 'subversion'
 package 'libapache2-mod-rpaf'
 
