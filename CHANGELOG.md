@@ -1,6 +1,11 @@
 et_www cookbook
 ===============
 
+v4.0.3 (2015-08-24)
+-------------------
+
+* Ensure `mysqldump` is installed for local pull of stage/prod DBs
+
 v4.0.2 (2015-08-13)
 -------------------
 
