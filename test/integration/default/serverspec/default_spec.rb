@@ -133,45 +133,6 @@ describe 'Website Virtual Hosts' do
   end
 end
 
-describe 'Server Monitoring' do
-  describe file '/etc/newrelic/newrelic-plugin-agent.cfg' do
-    describe '#content' do
-      subject { super().content }
-      it do
-        pending('We should really make the newrelic plugin tests work')
-        is_expected.to include 'TESTKEY_NEWRELIC'
-      end
-      it do
-        pending('We should really make the newrelic plugin tests work')
-        is_expected.to include 'apache_httpd'
-      end
-      it do
-        pending('We should really make the newrelic plugin tests work')
-        is_expected.to include 'php_apc'
-      end
-    end
-  end
-
-  describe service 'newrelic-plugin-agent' do
-    it { is_expected.to_not be_running }
-    it do
-      pending('We should really make the newrelic plugin tests work')
-      is_expected.to be_enabled
-    end
-  end
-
-  context 'PHP Agent' do
-    describe file '/etc/php5/mods-available/newrelic.ini' do
-      it { is_expected.to be_file }
-      describe '#content' do
-        subject { super().content }
-        it { is_expected.to include 'TESTKEY_NEWRELIC' }
-        it { is_expected.to include 'WWW' }
-      end
-    end
-  end
-end
-
 describe 'WP-CLI' do
   describe file '/usr/local/bin/wp' do
     it { is_expected.to be_file }

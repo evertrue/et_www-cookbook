@@ -25,14 +25,6 @@
     Require ip <%= node['apache']['status_allow_list'] %>
   </Location>
 
-  # Allow access to APC stats for New Relic locally only
-  Alias /apc-nrp.php /opt/newrelic-plugin-agent/apc-nrp.php
-
-  <Directory "/opt/newrelic-plugin-agent">
-    Require local
-    Require ip <%= node['apache']['status_allow_list'] %>
-  </Directory>
-
   LogLevel warn
   ErrorLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-error.log
   CustomLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-access.log combined

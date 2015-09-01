@@ -25,14 +25,3 @@ suites:
   - name: default
     run_list:
       - recipe[et_www::default]
-    attributes:
-      newrelic:
-        server_monitor_agent:
-          service_notify_action: nothing
-          service_actions:
-            - enable
-      newrelic_meetme_plugin:
-        service_notify_action: nothing
-        service_actions:
-          - enable
-        user: deploy

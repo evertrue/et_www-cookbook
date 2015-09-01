@@ -51,5 +51,4 @@ user node['et_www']['user'] do
 end
 
 include_recipe 'et_www::vhost'
-include_recipe 'et_www::newrelic'
 include_recipe 'composer'
