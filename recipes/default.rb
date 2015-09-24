@@ -29,7 +29,14 @@ include_recipe 'git'
 include_recipe 'php'
 
 php_fpm_pool 'www' do
-  additional_config 'catch_workers_output' => 'yes'
+  max_children 48
+  start_servers 10
+  min_spare_servers 10
+  max_spare_servers 10
+  additional_config(
+    'catch_workers_output' => 'yes',
+    'max_requests' => 200
+  )
 end
 
 # Ensure mysqldump is present

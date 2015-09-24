@@ -33,7 +33,12 @@ describe 'Web Server' do
     it { is_expected.to be_file }
     describe '#content' do
       subject { super().content }
+      it { is_expected.to include 'max_children = 48' }
+      it { is_expected.to include 'start_servers = 10' }
+      it { is_expected.to include 'min_spare_servers = 10' }
+      it { is_expected.to include 'max_spare_servers = 10' }
       it { is_expected.to include 'catch_workers_output = yes' }
+      it { is_expected.to include 'max_requests = 200' }
     end
   end
 
