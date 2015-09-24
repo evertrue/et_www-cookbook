@@ -28,7 +28,9 @@ include_recipe 'apache2::mod_fastcgi'
 include_recipe 'git'
 include_recipe 'php'
 
-php_fpm_pool 'www'
+php_fpm_pool 'www' do
+  additional_config 'catch_workers_output' => 'yes'
+end
 
 # Ensure mysqldump is present
 package 'mysql-client-5.6'

@@ -31,6 +31,10 @@ describe 'Web Server' do
 
   describe file '/etc/php5/fpm/pool.d/www.conf' do
     it { is_expected.to be_file }
+    describe '#content' do
+      subject { super().content }
+      it { is_expected.to include 'catch_workers_output = yes' }
+    end
   end
 
   describe file '/etc/apache2/conf-enabled/h5bp.conf' do
