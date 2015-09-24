@@ -1,6 +1,16 @@
 et_www cookbook
 ===============
 
+v5.1.0 (2015-09-01)
+-------------------
+
+* Add logging of PHP-FPM workers
+* Tune PHP-FPM performance
+* Fix collision of PHP-FPM pool names
+    - The default pool config, `www.conf` is deleted as part of the `php_fpm_pool` resource (see [line 39 of fpm_pool.rb](https://github.com/chef-cookbooks/php/blob/v1.7.2/providers/fpm_pool.rb#L39))
+        + On first convergence, our pool is created, then destroyed, because it shares a name with the default
+        + Subsequent convergences bring it back, and do not delete anything
+
 v5.0.0 (2015-09-01)
 -------------------
 
