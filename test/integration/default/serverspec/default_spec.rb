@@ -6,6 +6,11 @@ describe 'Web Server' do
     it { is_expected.to be_enabled }
   end
 
+  describe service 'php5-fpm' do
+    it { is_expected.to be_running }
+    it { is_expected.to be_enabled }
+  end
+
   describe port '80' do
     it { is_expected.to be_listening }
   end
