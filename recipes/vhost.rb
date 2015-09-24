@@ -24,7 +24,7 @@ end
 # Install WP-CLI
 remote_file '/usr/local/bin/wp' do
   mode '0755'
-  source 'https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar'
+  source 'https://github.com/wp-cli/wp-cli/releases/download/v0.20.1/wp-cli-0.20.1.phar'
 end
 
 group node['et_www']['group'] do
