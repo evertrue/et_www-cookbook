@@ -35,7 +35,7 @@ php_fpm_pool 'evertrue' do
   max_spare_servers 10
   additional_config(
     'catch_workers_output' => 'yes',
-    'max_requests' => 200
+    'pm.max_requests' => 200
   )
 end
 
