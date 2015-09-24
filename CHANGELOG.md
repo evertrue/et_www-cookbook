@@ -1,7 +1,13 @@
 et_www cookbook
 ===============
 
-v5.1.0 (2015-09-01)
+v5.1.1 (2015-09-24)
+-------------------
+
+* Fix key nane for PHP-FPM config `pm.max_requests`
+* Add test that PHP-FPM is up & running (avoids using bad config values)
+* Remove no longer needed resources to clean up old Apache vhost configs
+
 v5.1.0 (2015-09-24)
 -------------------
 
