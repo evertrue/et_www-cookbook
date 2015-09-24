@@ -117,17 +117,3 @@ end
     notifies :reload, 'service[apache2]', :delayed
   end
 end
-
-%w(
-  evertrue_com
-  stage_evertrue_com
-).each do |conf_file|
-  link "/etc/apache2/sites-enabled/#{conf_file}.conf" do
-    action :delete
-    notifies :reload, 'service[apache2]', :delayed
-  end
-
-  file "/etc/apache2/sites-available/#{conf_file}.conf" do
-    action :delete
-  end
-end
