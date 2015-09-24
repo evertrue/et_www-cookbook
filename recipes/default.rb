@@ -28,7 +28,7 @@ include_recipe 'apache2::mod_fastcgi'
 include_recipe 'git'
 include_recipe 'php'
 
-php_fpm_pool 'www' do
+php_fpm_pool 'evertrue' do
   max_children 48
   start_servers 10
   min_spare_servers 10

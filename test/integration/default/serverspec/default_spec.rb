@@ -29,7 +29,7 @@ describe 'Web Server' do
     it { is_expected.to be_file }
   end
 
-  describe file '/etc/php5/fpm/pool.d/www.conf' do
+  describe file '/etc/php5/fpm/pool.d/evertrue.conf' do
     it { is_expected.to be_file }
     describe '#content' do
       subject { super().content }
