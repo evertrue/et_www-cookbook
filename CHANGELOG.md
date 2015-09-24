@@ -2,6 +2,7 @@ et_www cookbook
 ===============
 
 v5.1.0 (2015-09-01)
+v5.1.0 (2015-09-24)
 -------------------
 
 * Add logging of PHP-FPM workers
